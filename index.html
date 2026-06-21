@@ -172,7 +172,9 @@
             position: relative;
             width: min(360px, 90vw);
             cursor: pointer;
-            user-select: none
+            user-select: none;
+            transform-style: preserve-3d;
+            transition: opacity .75s ease, transform .75s cubic-bezier(.22, 1, .36, 1), filter .75s ease
         }
 
         #envelope {
@@ -186,6 +188,20 @@
 
         #env-wrap:hover #envelope {
             transform: scale(1.03) translateY(-5px)
+        }
+
+        #env-wrap.opening {
+            pointer-events: none
+        }
+
+        #env-wrap.opening #envelope {
+            transform: translateY(-12px) scale(1.02)
+        }
+
+        #env-wrap.leaving {
+            opacity: 0;
+            filter: blur(4px);
+            transform: translateY(42px) scale(.82) rotateX(8deg)
         }
 
         .env-body {
@@ -351,32 +367,53 @@
             position: relative;
             z-index: 10;
             width: 100%;
-            max-width: 680px
+            max-width: 680px;
+            perspective: 1600px
         }
 
         .page {
             display: none;
             opacity: 0;
-            transform: translateY(28px) scale(.985);
-            margin-bottom: 1.2rem
+            margin-bottom: 1.2rem;
+            transform-style: preserve-3d
         }
 
         .page.visible {
             display: block;
             opacity: 1;
-            transform: translateY(0) scale(1);
-            animation: pageEnter .65s cubic-bezier(.22, 1, .36, 1)
+            animation: pageFlip .72s cubic-bezier(.22, 1, .36, 1);
+            backface-visibility: hidden
         }
 
-        @keyframes pageEnter {
+        @keyframes pageFlip {
             from {
                 opacity: 0;
-                transform: translateY(28px) scale(.985)
+                transform: rotateY(-72deg) translateX(34px) scale(.96);
+                transform-origin: left center
             }
 
             to {
                 opacity: 1;
-                transform: translateY(0) scale(1)
+                transform: rotateY(0deg) translateX(0) scale(1);
+                transform-origin: left center
+            }
+        }
+
+        .page.flip-back.visible {
+            animation-name: pageFlipBack
+        }
+
+        @keyframes pageFlipBack {
+            from {
+                opacity: 0;
+                transform: rotateY(72deg) translateX(-34px) scale(.96);
+                transform-origin: right center
+            }
+
+            to {
+                opacity: 1;
+                transform: rotateY(0deg) translateX(0) scale(1);
+                transform-origin: right center
             }
         }
 
@@ -685,6 +722,65 @@
             font-size: .64rem;
             letter-spacing: .16em;
             text-transform: uppercase
+        }
+
+        .message-form {
+            display: grid;
+            gap: .75rem;
+            max-width: 420px;
+            margin: 1rem auto 0
+        }
+
+        .message-form label {
+            display: block;
+            color: #8b6020;
+            font-size: .72rem;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            text-align: left;
+            margin-bottom: .25rem
+        }
+
+        .message-form input,
+        .message-form textarea {
+            width: 100%;
+            border: 1px solid var(--gold-lt);
+            background: rgba(255, 251, 236, .72);
+            color: #4a2c06;
+            font: inherit;
+            padding: .65rem .75rem;
+            outline: none
+        }
+
+        .message-form textarea {
+            min-height: 120px;
+            resize: vertical
+        }
+
+        .message-form input:focus,
+        .message-form textarea:focus {
+            border-color: var(--gold-dk);
+            box-shadow: 0 0 0 2px rgba(181, 132, 10, .12)
+        }
+
+        .send-btn {
+            justify-self: center;
+            border: 1px solid var(--gold);
+            background: var(--gold);
+            color: var(--cream);
+            font-family: 'EB Garamond', serif;
+            font-size: .86rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            padding: .65rem 1.6rem;
+            cursor: pointer
+        }
+
+        .form-note {
+            color: #9a6e28;
+            font-size: .78rem;
+            font-style: italic;
+            margin-top: .5rem
         }
 
         .divider-svg {
@@ -1502,14 +1598,131 @@
                 </div>
             </div>
 
-            <!-- PAGE 4: FAMILY & CLOSING -->
+            <!-- PAGE 4: WALIMA -->
             <div class="page" id="page-4">
-                <div class="page-ribbon only-en">✦ Page 4 — With Blessings ✦</div>
+                <div class="page-ribbon only-en">✦ Page 4 — Walima · 18 November 2026 ✦</div>
                 <div class="page-ribbon only-ur"
-                    style="font-family:'Noto Nastaliq Urdu',serif;font-size:.8rem;direction:rtl">✦ صفحہ ۴ — دعاؤں کے
+                    style="font-family:'Noto Nastaliq Urdu',serif;font-size:.8rem;direction:rtl">✦ صفحہ ۴ — ولیمہ · ۱۸
+                    نومبر ۲۰۲۶ ✦</div>
+                <div class="page-ribbon only-hi" style="font-family:'Noto Sans Devanagari',sans-serif;font-size:.8rem">✦
+                    पृष्ठ ४ — वलीमा · १८ नवम्बर २०२६ ✦</div>
+                <div class="card">
+                    <div class="border-outer"></div>
+                    <div class="border-inner"></div>
+                    <svg class="corner tl" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                    </svg>
+                    <svg class="corner tr" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                    </svg>
+                    <svg class="corner bl" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                    </svg>
+                    <svg class="corner br" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                    </svg>
+
+                    <div class="content">
+                        <div class="ev-tag only-en">Reception Feast</div>
+                        <div class="ev-tag only-ur" style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">دعوتِ
+                            ولیمہ</div>
+                        <div class="ev-tag only-hi" style="font-family:'Noto Sans Devanagari',sans-serif">वलीमा समारोह
+                        </div>
+
+                        <div class="only-en">
+                            <div class="ev-lbl">Walima</div>
+                            <p class="present">You are cordially invited to the Walima dinner</p>
+                        </div>
+                        <div class="only-ur">
+                            <div class="ev-lbl"
+                                style="font-family:'Noto Nastaliq Urdu',serif;font-size:1.8rem;direction:rtl">ولیمہ</div>
+                            <p class="present" style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">دعوتِ ولیمہ
+                                میں شرکت فرما کر عزت بخشیں</p>
+                        </div>
+                        <div class="only-hi">
+                            <div class="ev-lbl" style="font-family:'Noto Sans Devanagari',sans-serif">वलीमा</div>
+                            <p class="present" style="font-family:'Noto Sans Devanagari',sans-serif">वलीमा दावत में
+                                सादर आमंत्रित हैं</p>
+                        </div>
+
+                        <svg class="divider-svg" viewBox="0 0 400 20" fill="none">
+                            <line x1="0" y1="10" x2="155" y2="10" stroke="#b5840a" stroke-width=".7" />
+                            <circle cx="200" cy="10" r="5" fill="#b5840a" />
+                            <line x1="245" y1="10" x2="400" y2="10" stroke="#b5840a" stroke-width=".7" />
+                        </svg>
+
+                        <div class="detail-grid">
+                            <div class="detail-col">
+                                <span class="detail-lbl only-en">Date</span>
+                                <span class="detail-lbl only-ur"
+                                    style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">تاریخ</span>
+                                <span class="detail-lbl only-hi"
+                                    style="font-family:'Noto Sans Devanagari',sans-serif">तारीख</span>
+                                <span class="detail-val only-en">Wednesday, 18 Nov 2026</span>
+                                <span class="detail-val only-ur"
+                                    style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">بدھ، ۱۸ نومبر ۲۰۲۶</span>
+                                <span class="detail-val only-hi"
+                                    style="font-family:'Noto Sans Devanagari',sans-serif">बुधवार, १८ नव॰ २०२६</span>
+                            </div>
+                            <div class="detail-div"></div>
+                            <div class="detail-col">
+                                <span class="detail-lbl only-en">Venue</span>
+                                <span class="detail-lbl only-ur"
+                                    style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">مقام</span>
+                                <span class="detail-lbl only-hi"
+                                    style="font-family:'Noto Sans Devanagari',sans-serif">स्थान</span>
+                                <span class="detail-val only-en" style="font-size:.88rem">Groom's Residence</span>
+                                <span class="detail-val only-ur"
+                                    style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl;font-size:.88rem">دولہے کا گھر</span>
+                                <span class="detail-val only-hi"
+                                    style="font-family:'Noto Sans Devanagari',sans-serif;font-size:.88rem">दूल्हे का आवास</span>
+                            </div>
+                        </div>
+
+                        <div class="addr-block">
+                            <strong class="only-en">Groom's Residence</strong>
+                            <strong class="only-ur" style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">دولہے کا گھر</strong>
+                            <strong class="only-hi" style="font-family:'Noto Sans Devanagari',sans-serif">दूल्हे का आवास</strong>
+                            <span class="only-en">Village Bahari, Post Paharpur Raypatti, Sultanpur<br />Uttar Pradesh – 228131</span>
+                            <span class="only-ur"
+                                style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">گاؤں بہاری، پوسٹ پہاڑپور رائے پٹی، سلطان پور<br />اتر پردیش – ۲۲۸۱۳۱</span>
+                            <span class="only-hi"
+                                style="font-family:'Noto Sans Devanagari',sans-serif">ग्राम बहारी, पोस्ट पहाड़पुर रायपट्टी, सुलतानपुर<br />उत्तर प्रदेश – २२८१३१</span>
+                        </div>
+
+                        <div class="quran-quote">
+                            <div class="quran-ar">وَاللَّهُ يَرْزُقُ مَن يَشَاءُ بِغَيْرِ حِسَابٍ</div>
+                            <span class="only-en">Allah provides for whom He wills without account.</span>
+                            <span class="only-ur" style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">اللہ جسے
+                                چاہتا ہے بے حساب رزق دیتا ہے۔</span>
+                            <span class="only-hi" style="font-family:'Noto Sans Devanagari',sans-serif">अल्लाह जिसे
+                                चाहता है बेहिसाब रोज़ी देता है।</span>
+                            <span class="quran-ref">Surah Al-Baqarah 2:212</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 5: FAMILY & CLOSING -->
+            <div class="page" id="page-5">
+                <div class="page-ribbon only-en">✦ Page 5 — With Blessings ✦</div>
+                <div class="page-ribbon only-ur"
+                    style="font-family:'Noto Nastaliq Urdu',serif;font-size:.8rem;direction:rtl">✦ صفحہ ۵ — دعاؤں کے
                     ساتھ ✦</div>
                 <div class="page-ribbon only-hi" style="font-family:'Noto Sans Devanagari',sans-serif;font-size:.8rem">✦
-                    पृष्ठ ४ — आशीर्वाद के साथ ✦</div>
+                    पृष्ठ ५ — आशीर्वाद के साथ ✦</div>
                 <div class="card">
                     <div class="border-outer"></div>
                     <div class="border-inner"></div>
@@ -1571,18 +1784,21 @@
                                     Shaikh Javed <span class="fam-role">(Father)</span><br />
                                     Ruksana Begum <span class="fam-role">(Mother)</span><br />
                                     Shaikh Aftab <span class="fam-role">(Brother)</span><br />
+                                    Intiyaz Kazi <span class="fam-role">(Brother from another Mother)</span><br />
                                 </div>
                                 <div class="fam-name only-ur"
                                     style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl;font-size:.82rem;line-height:1.9">
                                     شیخ جاوید <span class="fam-role">(والد)</span><br />
                                     رکسانہ بیگم <span class="fam-role">(والدہ)</span><br />
                                     شیخ آفتاب <span class="fam-role">(بھائی)</span><br />
+                                    انتِیاز قاضی <span class="fam-role">(ماں کے پیٹ سے نہیں، دل سے بھائی)</span><br />
                                 </div>
                                 <div class="fam-name only-hi"
                                     style="font-family:'Noto Sans Devanagari',sans-serif;font-size:.78rem;line-height:1.9">
                                     शेख जावेद <span class="fam-role">(पिता)</span><br />
                                     रुकसाना बेगम <span class="fam-role">(माता)</span><br />
                                     शेख आफताब <span class="fam-role">(भाई)</span><br />
+                                    इंतियाज़ काज़ी <span class="fam-role">(माँ के पेट से नहीं, दिल से भाई)</span><br />
                                 </div>
                             </div>
                             <div class="fam-div"></div>
@@ -1650,12 +1866,92 @@
                 </div>
             </div>
 
+            <!-- PAGE 6: SEND MESSAGE -->
+            <div class="page" id="page-6">
+                <div class="page-ribbon only-en">✦ Page 6 — Send Message ✦</div>
+                <div class="page-ribbon only-ur"
+                    style="font-family:'Noto Nastaliq Urdu',serif;font-size:.8rem;direction:rtl">✦ صفحہ ۶ — پیغام بھیجیں
+                    ✦</div>
+                <div class="page-ribbon only-hi" style="font-family:'Noto Sans Devanagari',sans-serif;font-size:.8rem">✦
+                    पृष्ठ ६ — संदेश भेजें ✦</div>
+                <div class="card">
+                    <div class="border-outer"></div>
+                    <div class="border-inner"></div>
+                    <svg class="corner tl" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                    </svg>
+                    <svg class="corner tr" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                    </svg>
+                    <svg class="corner bl" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                    </svg>
+                    <svg class="corner br" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                    </svg>
+
+                    <div class="content">
+                        <div class="only-en">
+                            <p class="family-nm">Send Your Blessings</p>
+                            <p class="present">Leave a message for the bride and groom</p>
+                        </div>
+                        <div class="only-ur">
+                            <p class="family-nm" style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">اپنی دعائیں
+                                بھیجیں</p>
+                            <p class="present" style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">دولہا دلہن کے
+                                لئے پیغام لکھیں</p>
+                        </div>
+                        <div class="only-hi">
+                            <p class="family-nm" style="font-family:'Noto Sans Devanagari',sans-serif">अपना आशीर्वाद
+                                भेजें</p>
+                            <p class="present" style="font-family:'Noto Sans Devanagari',sans-serif">दूल्हा-दुल्हन के
+                                लिए संदेश लिखें</p>
+                        </div>
+
+                        <svg class="divider-svg" viewBox="0 0 400 20" fill="none">
+                            <line x1="0" y1="10" x2="150" y2="10" stroke="#b5840a" stroke-width=".7" />
+                            <path d="M160 10Q170 2 180 10Q190 18 200 10Q210 2 220 10Q230 18 240 10" stroke="#b5840a"
+                                stroke-width=".9" />
+                            <circle cx="200" cy="10" r="4" fill="#b5840a" />
+                            <line x1="250" y1="10" x2="400" y2="10" stroke="#b5840a" stroke-width=".7" />
+                        </svg>
+
+                        <form class="message-form" onsubmit="sendMessage(event)">
+                            <div>
+                                <label for="guest-name">Name</label>
+                                <input id="guest-name" name="name" type="text" required />
+                            </div>
+                            <div>
+                                <label for="guest-message">Message</label>
+                                <textarea id="guest-message" name="message" required></textarea>
+                            </div>
+                            <button class="send-btn" type="submit">Send Message</button>
+                        </form>
+                        <p class="form-note" id="message-status">Your message will open in WhatsApp for sending.</p>
+                    </div>
+                </div>
+            </div>
+
             <!-- Nav dots -->
             <div id="nav-dots">
                 <div class="dot active" onclick="showPage(1)" title="Page 1"></div>
                 <div class="dot" onclick="showPage(2)" title="Page 2"></div>
                 <div class="dot" onclick="showPage(3)" title="Page 3"></div>
                 <div class="dot" onclick="showPage(4)" title="Page 4"></div>
+                <div class="dot" onclick="showPage(5)" title="Page 5"></div>
+                <div class="dot" onclick="showPage(6)" title="Page 6"></div>
             </div>
             <div class="page-controls" id="page-controls">
                 <button class="page-btn" id="prev-page" onclick="changePage(-1)">Previous</button>
@@ -1702,7 +1998,7 @@
             });
         }
 
-        const totalPages = 4;
+        const totalPages = 6;
         let currentPage = 1;
 
         function updatePageNav() {
@@ -1718,8 +2014,10 @@
 
         function showPage(n) {
             const nextPage = Math.max(1, Math.min(totalPages, n));
+            const movingBack = nextPage < currentPage;
             currentPage = nextPage;
             document.querySelectorAll('.page').forEach((page, index) => {
+                page.classList.toggle('flip-back', movingBack);
                 page.classList.toggle('visible', index + 1 === currentPage);
             });
             updatePageNav();
@@ -1733,15 +2031,13 @@
         let opened = false;
         function openEnvelope() {
             if (opened) return; opened = true;
+            const ew = document.getElementById('env-wrap');
+            ew.classList.add('opening');
             document.getElementById('click-hint').style.opacity = '0';
             document.getElementById('env-flap').style.transform = 'rotateX(-180deg)';
             setTimeout(() => document.getElementById('seal').classList.add('gone'), 300);
             setTimeout(() => document.getElementById('letter-peek').classList.add('up'), 700);
-            setTimeout(() => {
-                const ew = document.getElementById('env-wrap');
-                ew.style.transition = 'opacity .7s ease,transform .7s ease';
-                ew.style.opacity = '0'; ew.style.transform = 'scale(.8) translateY(30px)';
-            }, 1500);
+            setTimeout(() => ew.classList.add('leaving'), 1550);
             setTimeout(() => {
                 document.getElementById('env-wrap').style.display = 'none';
                 const iw = document.getElementById('inv-wrap'); iw.style.display = 'block';
@@ -1755,6 +2051,17 @@
         }
 
         function scrollToPage(n) { showPage(n) }
+
+        function sendMessage(event) {
+            event.preventDefault();
+            const name = document.getElementById('guest-name').value.trim();
+            const message = document.getElementById('guest-message').value.trim();
+            const status = document.getElementById('message-status');
+            if (!name || !message) return;
+            const text = `Wedding blessing from ${name}:%0A${encodeURIComponent(message)}`;
+            window.open(`https://wa.me/?text=${text}`, '_blank');
+            status.textContent = 'Your message is ready to send in WhatsApp.';
+        }
 
         // ── Petals ──
         function spawnPetals() {
