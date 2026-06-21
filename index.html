@@ -1051,6 +1051,28 @@
             color: var(--gold-dk);
             text-shadow: 0 0 20px rgba(181, 132, 10, .3)
         }
+        /* Swipe helper */
+        #swipe-help {
+            text-align: center;
+            color: var(--gold-lt);
+            font-family: 'EB Garamond', serif;
+            font-size: .85rem;
+            letter-spacing: .12em;
+            margin: 10px 0;
+            animation: swipeMove 1.5s infinite;
+        }
+
+        @keyframes swipeMove {
+            0%,100% {
+                transform: translateX(0);
+                opacity: .5;
+            }
+
+            50% {
+                transform: translateX(15px);
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 
@@ -1122,6 +1144,9 @@
 
         <!-- ══ INVITATION PAGES ══ -->
         <div id="inv-wrap">
+                <div id="swipe-help">
+            ← Swipe left to continue →
+        </div>
 
             <!-- PAGE 1: COVER -->
             <div class="page" id="page-1">
@@ -2088,6 +2113,35 @@
                 }, i * 300);
             }
         }
+        // ── Mobile Swipe Navigation ──
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+
+        document.addEventListener("touchstart", function(e){
+            touchStartX = e.changedTouches[0].clientX;
+        });
+
+
+        document.addEventListener("touchend", function(e){
+
+            touchEndX = e.changedTouches[0].clientX;
+
+            let swipeDistance = touchStartX - touchEndX;
+
+
+            // Swipe left = next page
+            if(swipeDistance > 50){
+                changePage(1);
+            }
+
+
+            // Swipe right = previous page
+            if(swipeDistance < -50){
+                changePage(-1);
+            }
+
+        });
     </script>
 </body>
 
