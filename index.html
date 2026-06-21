@@ -1,0 +1,1679 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Wedding Invitation – Shaikh Afzal & Jarina Nisha</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Nastaliq+Urdu&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        :root {
+            --gold: #b5840a;
+            --gold-lt: #c9a84c;
+            --gold-dk: #7a4f0d;
+            --cream: #fdf6e3;
+            --dark: #100800;
+            --card-bg: #fdf6e3;
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            background: var(--dark);
+            min-height: 100vh;
+            font-family: 'EB Garamond', Georgia, serif;
+            overflow-x: hidden
+        }
+
+        /* ── STARFIELD ── */
+        #stars {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden
+        }
+
+        .star {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--gold-lt);
+            opacity: 0;
+            animation: twinkle var(--d, 3s) ease-in-out infinite var(--delay, 0s)
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0
+            }
+
+            50% {
+                opacity: var(--op, .4)
+            }
+        }
+
+        /* ── FLOATING PARTICLES ── */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            animation: floatUp linear forwards
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: .8
+            }
+
+            100% {
+                transform: translateY(-10vh) rotate(720deg);
+                opacity: 0
+            }
+        }
+
+        /* ── LANG SWITCHER ── */
+        #lang-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+            background: rgba(16, 8, 0, .92);
+            border-bottom: 1px solid var(--gold-dk);
+            padding: 0px 16px;
+            backdrop-filter: blur(6px);
+            transform: translateY(-100%);
+            transition: transform .4s ease;
+        }
+
+        #lang-bar.visible {
+            transform: translateY(0)
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--gold-lt);
+            font-family: 'EB Garamond', serif;
+            font-size: .78rem;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            padding: 5px 14px;
+            border-right: 1px solid var(--gold-dk);
+            transition: color .2s, background .2s;
+        }
+
+        .lang-btn:last-child {
+            border-right: none
+        }
+
+        .lang-btn.active,
+        .lang-btn:hover {
+            color: var(--cream);
+            background: rgba(181, 132, 10, .2)
+        }
+
+        .lang-label {
+            color: var(--gold-dk);
+            font-size: .65rem;
+            letter-spacing: .2em;
+            margin-right: 10px;
+            text-transform: uppercase
+        }
+
+        /* ── PROGRESS BAR ── */
+        #progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold-dk), var(--gold-lt), var(--gold-dk));
+            width: 0%;
+            z-index: 999;
+            display: none;
+            transition: width .15s
+        }
+
+        /* ── SCENE ── */
+        #scene {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            perspective: 1400px;
+            position: relative;
+            z-index: 5
+        }
+
+        /* ── ENVELOPE ── */
+        #env-wrap {
+            position: relative;
+            width: min(360px, 90vw);
+            cursor: pointer;
+            user-select: none
+        }
+
+        #envelope {
+            width: 100%;
+            height: 0;
+            padding-bottom: 70%;
+            position: relative;
+            filter: drop-shadow(0 20px 60px rgba(181, 132, 10, .5));
+            transition: transform .3s ease
+        }
+
+        #env-wrap:hover #envelope {
+            transform: scale(1.03) translateY(-5px)
+        }
+
+        .env-body {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg, #2a1800, #1a0d00);
+            border: 1.5px solid var(--gold);
+            border-radius: 3px
+        }
+
+        .env-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(181, 132, 10, .04) 8px, rgba(181, 132, 10, .04) 9px), repeating-linear-gradient(-45deg, transparent, transparent 8px, rgba(181, 132, 10, .04) 8px, rgba(181, 132, 10, .04) 9px);
+            border-radius: 3px
+        }
+
+        .env-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            clip-path: polygon(0 0, 100% 50%, 0 100%);
+            background: #221200
+        }
+
+        .env-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            clip-path: polygon(100% 0, 0 50%, 100% 100%);
+            background: #221200
+        }
+
+        .env-btm {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 55%;
+            clip-path: polygon(0 100%, 50% 0, 100% 100%);
+            background: #1f0f00;
+            border-left: 1.5px solid var(--gold);
+            border-right: 1.5px solid var(--gold)
+        }
+
+        #env-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 55%;
+            transform-origin: top center;
+            transform-style: preserve-3d;
+            z-index: 5;
+            transition: transform 1s cubic-bezier(.4, 0, .2, 1)
+        }
+
+        .flap-f {
+            position: absolute;
+            inset: 0;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            background: linear-gradient(170deg, #3a1e00, #2a1200);
+            border-top: 1.5px solid var(--gold);
+            border-left: 1.5px solid var(--gold);
+            border-right: 1.5px solid var(--gold);
+            backface-visibility: hidden
+        }
+
+        .flap-b {
+            position: absolute;
+            inset: 0;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+            background: linear-gradient(170deg, #1a0e00, #110800);
+            backface-visibility: hidden;
+            transform: rotateX(180deg)
+        }
+
+        #seal {
+            position: absolute;
+            top: 52%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: min(70px, 18%);
+            z-index: 8;
+            transition: opacity .4s, transform .4s;
+            cursor: pointer
+        }
+
+        #seal.gone {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(.3) rotate(20deg)
+        }
+
+        #letter-peek {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 82%;
+            z-index: 3;
+            opacity: 0;
+            transition: bottom .9s cubic-bezier(.22, 1, .36, 1) .6s, opacity .5s ease .6s;
+            pointer-events: none
+        }
+
+        #letter-peek.up {
+            bottom: 108%;
+            opacity: 1
+        }
+
+        .peek-card {
+            background: var(--cream);
+            border: 1px solid var(--gold);
+            padding: 14px 18px;
+            text-align: center;
+            box-shadow: 0 -8px 30px rgba(181, 132, 10, .25)
+        }
+
+        .peek-bism {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 1rem;
+            color: var(--gold-dk);
+            line-height: 1.6
+        }
+
+        #click-hint {
+            text-align: center;
+            margin-top: 1.2rem;
+            color: var(--gold-lt);
+            font-family: 'EB Garamond', serif;
+            font-size: 1rem;
+            font-style: italic;
+            letter-spacing: .1em;
+            animation: pulse 2s ease-in-out infinite
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: .4
+            }
+
+            50% {
+                opacity: 1
+            }
+        }
+
+        /* ── ENV CONTENT DECORATION ── */
+        .env-inner-deco {
+            position: absolute;
+            inset: 0;
+            pointer-events: none
+        }
+
+        /* ── INVITATION PAGES ── */
+        #inv-wrap {
+            display: none;
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 680px
+        }
+
+        .page {
+            opacity: 0;
+            transform: translateY(50px) scale(.97);
+            transition: opacity .8s ease, transform .8s ease;
+            margin-bottom: 2.5rem
+        }
+
+        .page.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1)
+        }
+
+        /* ── CARD ── */
+        .card {
+            background: var(--card-bg);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 70px rgba(139, 90, 20, .5), 0 0 0 2px var(--gold)
+        }
+
+        .border-outer {
+            position: absolute;
+            inset: 10px;
+            border: 1.5px solid var(--gold);
+            pointer-events: none;
+            z-index: 2
+        }
+
+        .border-inner {
+            position: absolute;
+            inset: 16px;
+            border: .5px solid var(--gold-lt);
+            pointer-events: none;
+            z-index: 2
+        }
+
+        .corner {
+            position: absolute;
+            width: 64px;
+            height: 64px;
+            z-index: 3
+        }
+
+        .corner.tl {
+            top: 10px;
+            left: 10px
+        }
+
+        .corner.tr {
+            top: 10px;
+            right: 10px;
+            transform: scaleX(-1)
+        }
+
+        .corner.bl {
+            bottom: 10px;
+            left: 10px;
+            transform: scaleY(-1)
+        }
+
+        .corner.br {
+            bottom: 10px;
+            right: 10px;
+            transform: scale(-1, -1)
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            padding: 55px 56px;
+            text-align: center
+        }
+
+        @media(max-width:500px) {
+            .content {
+                padding: 36px 24px
+            }
+        }
+
+        /* ── TYPOGRAPHY ── */
+        .bism {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            color: var(--gold-dk);
+            letter-spacing: .05em;
+            line-height: 1.7;
+            margin-bottom: .3rem
+        }
+
+        .ribbon {
+            background: linear-gradient(90deg, transparent, #b5840a22, #b5840a44, #b5840a22, transparent);
+            border-top: .5px solid var(--gold);
+            border-bottom: .5px solid var(--gold);
+            padding: 6px 0;
+            margin: 1rem 0;
+            letter-spacing: .22em;
+            font-size: .7rem;
+            text-transform: uppercase;
+            color: var(--gold-dk)
+        }
+
+        .family-nm {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(.85rem, 2.5vw, 1rem);
+            color: #5a3a08;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            margin-bottom: .25rem
+        }
+
+        .present {
+            font-size: .88rem;
+            color: #8b6020;
+            font-style: italic;
+            margin-bottom: .8rem
+        }
+
+        .groom-nm,
+        .bride-nm {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 2.6rem);
+            font-weight: 600;
+            color: #4a2c06;
+            line-height: 2.15;
+            letter-spacing: .03em
+        }
+
+        .nm-urdu {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            color: var(--gold-dk);
+            display: block;
+            margin: .1rem 0 .3rem
+        }
+
+        .nm-hindi {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            color: var(--gold-dk);
+            display: block;
+            margin: .1rem 0 .3rem
+        }
+
+        .amp {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 6vw, 3rem);
+            color: var(--gold);
+            line-height: 1;
+            display: block;
+            margin: .4rem 0
+        }
+
+        .sub-nm {
+            font-size: .8rem;
+            color: #8b6020;
+            font-style: italic;
+            margin: .1rem 0;
+            letter-spacing: .03em
+        }
+
+        .ev-tag {
+            display: inline-block;
+            border: 1px solid var(--gold);
+            color: var(--gold-dk);
+            font-size: .7rem;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            padding: 4px 16px;
+            margin: 1rem 0 .5rem
+        }
+
+        .ev-lbl {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: #4a2c06;
+            letter-spacing: .08em;
+            margin-bottom: .15rem
+        }
+
+        .ev-urdu {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 1.2rem;
+            color: var(--gold-dk);
+            display: block;
+            margin-bottom: .6rem
+        }
+
+        .ev-hindi {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            font-size: 1.1rem;
+            color: var(--gold-dk);
+            display: block;
+            margin-bottom: .6rem
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5px 1fr;
+            margin: 1rem 0 .5rem;
+            align-items: center
+        }
+
+        .detail-col {
+            padding: .5rem .8rem
+        }
+
+        .detail-div {
+            background: var(--gold);
+            height: 60px;
+            width: 1.5px;
+            margin: auto
+        }
+
+        .detail-lbl {
+            font-size: .65rem;
+            text-transform: uppercase;
+            letter-spacing: .18em;
+            color: #9a6e28;
+            display: block;
+            margin-bottom: 3px
+        }
+
+        .detail-val {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: #4a2c06;
+            line-height: 1.3
+        }
+
+        .detail-sub {
+            font-size: .78rem;
+            color: #8b6020;
+            display: block;
+            margin-top: 2px;
+            font-style: italic
+        }
+
+        .addr-block {
+            margin: .7rem 0 1rem;
+            font-size: .88rem;
+            color: #6b4a15;
+            line-height: 1.7
+        }
+
+        .addr-block strong {
+            font-family: 'Playfair Display', serif;
+            font-size: .95rem;
+            color: #4a2c06;
+            display: block
+        }
+
+        .rsvp-note {
+            font-size: .78rem;
+            color: #9a6e28;
+            font-style: italic;
+            border-top: .5px solid var(--gold-lt);
+            padding-top: .8rem;
+            margin-top: .8rem;
+            letter-spacing: .03em;
+            line-height: 1.8
+        }
+
+        .footer-urdu {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 1rem;
+            color: #8b6020;
+            margin-top: .3rem
+        }
+
+        .footer-hindi {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            font-size: .9rem;
+            color: #8b6020;
+            margin-top: .3rem
+        }
+
+        .divider-svg {
+            display: block;
+            margin: .5rem auto;
+            width: 82%
+        }
+
+        .arch-bg {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 260px;
+            opacity: .04;
+            pointer-events: none
+        }
+
+        .pg-label {
+            text-align: center;
+            color: var(--gold-lt);
+            font-family: 'EB Garamond', serif;
+            font-size: .72rem;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            margin-bottom: .5rem;
+            opacity: .7
+        }
+
+        /* family grid */
+        .fam-grid {
+            display: grid;
+            grid-template-columns: 1fr 1px 1fr;
+            gap: 0;
+            margin: 1rem 0
+        }
+
+        .fam-col {
+            padding: .5rem 1rem
+        }
+
+        .fam-div {
+            background: var(--gold-lt);
+            opacity: .5
+        }
+
+        .fam-title {
+            font-size: .65rem;
+            text-transform: uppercase;
+            letter-spacing: .18em;
+            color: #9a6e28;
+            margin-bottom: .4rem
+        }
+
+        .fam-name {
+            font-size: .85rem;
+            color: #5a3a08;
+            line-height: 1.6;
+            font-family: 'EB Garamond', serif
+        }
+
+        .fam-role {
+            font-size: .7rem;
+            color: #9a6e28;
+            font-style: italic
+        }
+
+        /* Countdown */
+        #countdown-box {
+            background: #b5840a0d;
+            border: .5px solid var(--gold-lt);
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: center
+        }
+
+        .cd-label {
+            font-size: .65rem;
+            text-transform: uppercase;
+            letter-spacing: .2em;
+            color: #9a6e28;
+            margin-bottom: .6rem;
+            display: block
+        }
+
+        .cd-grid {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        .cd-unit {
+            text-align: center
+        }
+
+        .cd-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: #4a2c06;
+            line-height: 1;
+            display: block
+        }
+
+        .cd-txt {
+            font-size: .6rem;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            color: #9a6e28
+        }
+
+        /* nav dots */
+        #nav-dots {
+            display: none;
+            justify-content: center;
+            gap: 10px;
+            margin: 1.5rem 0 2.5rem;
+            position: relative;
+            z-index: 20
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: 1px solid var(--gold);
+            background: transparent;
+            cursor: pointer;
+            transition: background .3s, transform .3s
+        }
+
+        .dot.active {
+            background: var(--gold);
+            transform: scale(1.3)
+        }
+
+        /* lang-specific visibility */
+        body[data-lang="en"] .only-ur,
+        body[data-lang="en"] .only-hi {
+            display: none !important
+        }
+
+        body[data-lang="ur"] .only-en,
+        body[data-lang="ur"] .only-hi {
+            display: none !important
+        }
+
+        body[data-lang="hi"] .only-en,
+        body[data-lang="hi"] .only-ur {
+            display: none !important
+        }
+
+        .only-en,
+        .only-ur,
+        .only-hi {
+            display: none !important
+        }
+
+        body[data-lang="en"] .only-en {
+            display: block !important
+        }
+
+        body[data-lang="ur"] .only-ur {
+            display: block !important
+        }
+
+        body[data-lang="hi"] .only-hi {
+            display: block !important
+        }
+
+        .urdu-inline {
+            display: none
+        }
+
+        body[data-lang="ur"] .urdu-inline {
+            display: block
+        }
+
+        .hindi-inline {
+            display: none
+        }
+
+        body[data-lang="hi"] .hindi-inline {
+            display: block
+        }
+
+        /* animate-in for lang switch */
+        @keyframes fadeSwitch {
+            from {
+                opacity: 0;
+                transform: translateY(6px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .card .content {
+            animation: fadeSwitch .5s ease
+        }
+
+        /* Ribbon banner top of pages */
+        .page-ribbon {
+            text-align: center;
+            padding: 6px 0;
+            font-size: .65rem;
+            letter-spacing: .28em;
+            text-transform: uppercase;
+            color: var(--gold-lt);
+            border-top: .5px solid var(--gold-dk);
+            border-bottom: .5px solid var(--gold-dk);
+            margin-bottom: 2rem;
+            background: linear-gradient(90deg, transparent, rgba(181, 132, 10, .08), transparent);
+        }
+
+        /* Interactive hover on names */
+        .groom-nm,
+        .bride-nm {
+            transition: color .3s, text-shadow .3s;
+            cursor: default
+        }
+
+        .groom-nm:hover {
+            color: var(--gold-dk);
+            text-shadow: 0 0 20px rgba(181, 132, 10, .3)
+        }
+
+        .bride-nm:hover {
+            color: var(--gold-dk);
+            text-shadow: 0 0 20px rgba(181, 132, 10, .3)
+        }
+    </style>
+</head>
+
+<body data-lang="en">
+
+    <div id="progress"></div>
+    <div id="stars"></div>
+
+    <!-- LANG BAR -->
+    <div id="lang-bar">
+        <span class="lang-label">Language:</span>
+        <button class="lang-btn active" onclick="setLang('en')">English</button>
+        <button class="lang-btn" onclick="setLang('ur')">اردو</button>
+        <button class="lang-btn" onclick="setLang('hi')">हिंदी</button>
+    </div>
+
+    <div id="scene">
+
+        <!-- ══ ENVELOPE ══ -->
+        <div id="env-wrap" onclick="openEnvelope()">
+            <div id="letter-peek">
+                <div class="peek-card">
+                    <div class="peek-bism">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ</div>
+                </div>
+            </div>
+
+            <div id="envelope">
+                <div class="env-body"></div>
+                <div class="env-pattern"></div>
+                <div class="env-left"></div>
+                <div class="env-right"></div>
+                <div class="env-btm"></div>
+                <div id="env-flap">
+                    <div class="flap-f">
+                        <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 360 180" fill="none">
+                            <path d="M10 5 L180 165 L350 5" stroke="#b5840a" stroke-width=".8" fill="none"
+                                opacity=".4" />
+                            <path d="M40 5 L180 140 L320 5" stroke="#c9a84c" stroke-width=".5" fill="none"
+                                opacity=".3" />
+                            <circle cx="180" cy="165" r="6" fill="#b5840a" opacity=".3" />
+                        </svg>
+                    </div>
+                    <div class="flap-b"></div>
+                </div>
+                <!-- Wax Seal -->
+                <svg id="seal" viewBox="0 0 72 72">
+                    <circle cx="36" cy="36" r="32" fill="#6e1500" stroke="#b5840a" stroke-width="2" />
+                    <circle cx="36" cy="36" r="26" fill="none" stroke="#c9a84c" stroke-width=".8"
+                        stroke-dasharray="3,3" />
+                    <text x="36" y="30" text-anchor="middle" font-family="serif" font-size="9"
+                        fill="#fdf6e3">نکاح</text>
+                    <text x="36" y="42" text-anchor="middle" font-family="serif" font-size="7" fill="#c9a84c"
+                        letter-spacing="1">MUBARAK</text>
+                    <text x="36" y="52" text-anchor="middle" font-family="serif" font-size="6" fill="#b5840a"
+                        letter-spacing=".5">2026</text>
+                </svg>
+
+                <!-- Envelope ornaments -->
+                <svg style="position:absolute;inset:0;width:100%;height:130%;pointer-events:none" viewBox="0 0 360 252"
+                    fill="none">
+                    <text x="180" y="160" text-anchor="middle" font-family="serif" font-size="11" fill="#c9a84c"
+                        opacity=".4">Shaikh Afzal ♥ Jarina Nisha</text>
+                    <text x="180" y="175" text-anchor="middle" font-family="serif" font-size="8" fill="#b5840a"
+                        opacity=".3">17 November 2026</text>
+                </svg>
+            </div>
+            <div id="click-hint">✦ Tap to open your invitation ✦</div>
+        </div>
+
+        <!-- ══ INVITATION PAGES ══ -->
+        <div id="inv-wrap">
+
+            <!-- PAGE 1: COVER -->
+            <div class="page" id="page-1">
+                <div class="page-ribbon only-en">✦ Page 1 — The Invitation ✦</div>
+                <div class="page-ribbon only-ur" style="font-family:'Noto Nastaliq Urdu',serif;font-size:.8rem">✦ صفحہ ۱
+                    — دعوت نامہ ✦</div>
+                <div class="page-ribbon only-hi" style="font-family:'Noto Sans Devanagari',sans-serif;font-size:.8rem">✦
+                    पृष्ठ १ — निमंत्रण पत्र ✦</div>
+                <div class="card">
+                    <div class="border-outer"></div>
+                    <div class="border-inner"></div>
+                    <svg class="corner tl" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                        <path d="M4 34Q4 4 34 4" stroke="#c9a84c" stroke-width=".5" stroke-dasharray="2,3" />
+                    </svg>
+                    <svg class="corner tr" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                        <path d="M4 34Q4 4 34 4" stroke="#c9a84c" stroke-width=".5" stroke-dasharray="2,3" />
+                    </svg>
+                    <svg class="corner bl" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                    </svg>
+                    <svg class="corner br" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                    </svg>
+                    <svg class="arch-bg" viewBox="0 0 260 320" fill="none">
+                        <path d="M30 320L30 160Q30 20 130 20Q230 20 230 160L230 320Z" stroke="#7a4f0d"
+                            stroke-width="3" />
+                        <path d="M50 320L50 168Q50 50 130 50Q210 50 210 168L210 320Z" stroke="#7a4f0d"
+                            stroke-width="1.5" />
+                        <circle cx="130" cy="20" r="12" stroke="#7a4f0d" stroke-width="2" />
+                    </svg>
+
+                    <div class="content">
+                        <div class="bism">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ</div>
+                        <svg class="divider-svg" viewBox="0 0 400 20" fill="none">
+                            <line x1="0" y1="10" x2="150" y2="10" stroke="#b5840a" stroke-width=".7" />
+                            <path d="M160 10Q170 2 180 10Q190 18 200 10Q210 2 220 10Q230 18 240 10" stroke="#b5840a"
+                                stroke-width=".9" />
+                            <circle cx="200" cy="10" r="4" fill="#b5840a" />
+                            <circle cx="178" cy="10" r="2" fill="#c9a84c" />
+                            <circle cx="222" cy="10" r="2" fill="#c9a84c" />
+                            <line x1="240" y1="10" x2="400" y2="10" stroke="#b5840a" stroke-width=".7" />
+                        </svg>
+
+                        <!-- ENGLISH -->
+                        <div class="only-en">
+                            <p class="family-nm">Shaikh Family &amp; Ashik Ali Family</p>
+                            <p class="present">joyfully request the honour of your presence</p>
+                            <div class="ribbon">Wedding Invitation</div>
+                            <div style="margin:1rem 0">
+                                <div class="groom-nm">Shaikh Afzal</div>
+                                <p class="sub-nm">Son of Shaikh Javed &amp; Ruksana Begum</p>
+                                <span class="amp">&amp;</span>
+                                <div class="bride-nm">Jarina Nisha</div>
+                                <p class="sub-nm">Daughter of Ashik Ali &amp; Kitabun Nisha</p>
+                            </div>
+                        </div>
+
+                        <!-- URDU -->
+                        <div class="only-ur" style="direction:rtl">
+                            <p class="family-nm"
+                                style="font-family:'Noto Nastaliq Urdu',serif;font-size:1rem;direction:rtl">خاندانِ شیخ
+                                &amp; خاندانِ عاشق علی</p>
+                            <p class="present"
+                                style="font-family:'Noto Nastaliq Urdu',serif;font-size:.9rem;direction:rtl">دل و جاں سے
+                                آپ کو دعوت دیتے ہیں</p>
+                            <div class="ribbon" style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">شادی کا
+                                کریمہ دعوت نامہ</div>
+                            <div style="margin:1rem 0;direction:rtl">
+                                <div class="groom-nm" style="font-family:'Noto Nastaliq Urdu',serif">شیخ افضل</div>
+                                <p class="sub-nm"
+                                    style="font-family:'Noto Nastaliq Urdu',serif;font-size:.9rem;direction:rtl">فرزندِ
+                                    شیخ جاوید و رکسانہ بیگم</p>
+                                <span class="amp">&amp;</span>
+                                <div class="bride-nm" style="font-family:'Noto Nastaliq Urdu',serif">جرینہ نشاء</div>
+                                <p class="sub-nm"
+                                    style="font-family:'Noto Nastaliq Urdu',serif;font-size:.9rem;direction:rtl">دختر
+                                    عاشق علی و کتابُن نشاء</p>
+                            </div>
+                        </div>
+
+                        <!-- HINDI -->
+                        <div class="only-hi">
+                            <p class="family-nm" style="font-family:'Noto Sans Devanagari',sans-serif">शेख परिवार &amp;
+                                आशिक अली परिवार</p>
+                            <p class="present" style="font-family:'Noto Sans Devanagari',sans-serif">हार्दिक निमंत्रण
+                                देते हैं</p>
+                            <div class="ribbon" style="font-family:'Noto Sans Devanagari',sans-serif">विवाह निमंत्रण
+                                पत्र</div>
+                            <div style="margin:1rem 0">
+                                <div class="groom-nm" style="font-family:'Noto Sans Devanagari',sans-serif">शेख अफज़ल
+                                </div>
+                                <p class="sub-nm" style="font-family:'Noto Sans Devanagari',sans-serif">पुत्र: शेख जावेद
+                                    एवं रुकसाना बेगम</p>
+                                <span class="amp">&amp;</span>
+                                <div class="bride-nm" style="font-family:'Noto Sans Devanagari',sans-serif">जरीना निशा
+                                </div>
+                                <p class="sub-nm" style="font-family:'Noto Sans Devanagari',sans-serif">पुत्री: आशिक अली
+                                    एवं किताबुन निशा</p>
+                            </div>
+                        </div>
+
+                        <svg class="divider-svg" viewBox="0 0 400 24" fill="none">
+                            <line x1="0" y1="12" x2="110" y2="12" stroke="#c9a84c" stroke-width=".5" />
+                            <path
+                                d="M120 12C130 4,140 4,150 12C160 20,170 20,180 12C190 4,200 4,210 12C220 20,230 20,240 12C250 4,260 4,270 12C280 20,290 20,300 12"
+                                stroke="#b5840a" stroke-width="1" />
+                            <circle cx="210" cy="12" r="5" fill="none" stroke="#b5840a" stroke-width="1" />
+                            <circle cx="210" cy="12" r="2.5" fill="#b5840a" />
+                            <line x1="300" y1="12" x2="400" y2="12" stroke="#c9a84c" stroke-width=".5" />
+                        </svg>
+
+                        <!-- Countdown Timer -->
+                        <div id="countdown-box">
+                            <span class="cd-label only-en">Days until the Wedding</span>
+                            <span class="cd-label only-ur"
+                                style="font-family:'Noto Nastaliq Urdu',serif;font-size:.8rem">شادی تک باقی دن</span>
+                            <span class="cd-label only-hi" style="font-family:'Noto Sans Devanagari',sans-serif">विवाह
+                                तक शेष दिन</span>
+                            <div class="cd-grid">
+                                <div class="cd-unit"><span class="cd-num" id="cd-days">--</span><span
+                                        class="cd-txt only-en">Days</span><span class="cd-txt only-ur"
+                                        style="font-family:'Noto Nastaliq Urdu',serif">دن</span><span
+                                        class="cd-txt only-hi"
+                                        style="font-family:'Noto Sans Devanagari',sans-serif">दिन</span></div>
+                                <div class="cd-unit"><span class="cd-num" id="cd-hrs">--</span><span
+                                        class="cd-txt only-en">Hours</span><span class="cd-txt only-ur"
+                                        style="font-family:'Noto Nastaliq Urdu',serif">گھنٹے</span><span
+                                        class="cd-txt only-hi"
+                                        style="font-family:'Noto Sans Devanagari',sans-serif">घंटे</span></div>
+                                <div class="cd-unit"><span class="cd-num" id="cd-min">--</span><span
+                                        class="cd-txt only-en">Mins</span><span class="cd-txt only-ur"
+                                        style="font-family:'Noto Nastaliq Urdu',serif">منٹ</span><span
+                                        class="cd-txt only-hi"
+                                        style="font-family:'Noto Sans Devanagari',sans-serif">मिनट</span></div>
+                                <div class="cd-unit"><span class="cd-num" id="cd-sec">--</span><span
+                                        class="cd-txt only-en">Secs</span><span class="cd-txt only-ur"
+                                        style="font-family:'Noto Nastaliq Urdu',serif">سیکنڈ</span><span
+                                        class="cd-txt only-hi"
+                                        style="font-family:'Noto Sans Devanagari',sans-serif">सेकंड</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 2: RATJAGA -->
+            <div class="page" id="page-2">
+                <div class="page-ribbon only-en">✦ Page 2 — Ratjaga · 16 November 2026 ✦</div>
+                <div class="page-ribbon only-ur"
+                    style="font-family:'Noto Nastaliq Urdu',serif;font-size:.8rem;direction:rtl">✦ صفحہ ۲ — رات جگا · ۱۶
+                    نومبر ۲۰۲۶ ✦</div>
+                <div class="page-ribbon only-hi" style="font-family:'Noto Sans Devanagari',sans-serif;font-size:.8rem">✦
+                    पृष्ठ २ — रातजगा · १६ नवम्बर २०२६ ✦</div>
+                <div class="card">
+                    <div class="border-outer"></div>
+                    <div class="border-inner"></div>
+                    <svg class="corner tl" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                    </svg>
+                    <svg class="corner tr" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                    </svg>
+                    <svg class="corner bl" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                    </svg>
+                    <svg class="corner br" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                    </svg>
+
+                    <!-- Moon/star deco bg -->
+                    <svg style="position:absolute;top:0;right:0;width:180px;opacity:.04;pointer-events:none"
+                        viewBox="0 0 180 180" fill="none">
+                        <path d="M90 20 Q130 50 130 90 Q130 140 80 155 Q130 145 150 100 Q165 50 110 20 Z"
+                            fill="#7a4f0d" />
+                        <circle cx="60" cy="60" r="4" fill="#7a4f0d" />
+                        <circle cx="140" cy="40" r="3" fill="#7a4f0d" />
+                        <circle cx="30" cy="120" r="2" fill="#7a4f0d" />
+                        <circle cx="160" cy="130" r="5" fill="#7a4f0d" />
+                    </svg>
+
+                    <div class="content">
+                        <div class="ev-tag only-en">Mehndi &amp; Ratjaga Night</div>
+                        <div class="ev-tag only-ur" style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">مہندی و
+                            رات جگا</div>
+                        <div class="ev-tag only-hi" style="font-family:'Noto Sans Devanagari',sans-serif">मेहंदी एवं
+                            रातजगा</div>
+
+                        <div class="only-en">
+                            <div class="ev-lbl">Ratjaga</div>
+                        </div>
+                        <div class="only-ur">
+                            <div class="ev-lbl"
+                                style="font-family:'Noto Nastaliq Urdu',serif;font-size:1.8rem;direction:rtl">رات جگا
+                            </div>
+                        </div>
+                        <div class="only-hi">
+                            <div class="ev-lbl" style="font-family:'Noto Sans Devanagari',sans-serif">रातजगा</div>
+                        </div>
+
+                        <svg class="divider-svg" viewBox="0 0 400 20" fill="none">
+                            <line x1="0" y1="10" x2="155" y2="10" stroke="#b5840a" stroke-width=".7" />
+                            <path d="M165 10Q175 2 185 10Q195 18 205 10Q215 2 225 10Q235 18 245 10" stroke="#b5840a"
+                                stroke-width=".9" />
+                            <circle cx="200" cy="10" r="4" fill="#b5840a" />
+                            <line x1="245" y1="10" x2="400" y2="10" stroke="#b5840a" stroke-width=".7" />
+                        </svg>
+
+                        <div class="detail-grid">
+                            <div class="detail-col">
+                                <span class="detail-lbl only-en">Date</span>
+                                <span class="detail-lbl only-ur"
+                                    style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">تاریخ</span>
+                                <span class="detail-lbl only-hi"
+                                    style="font-family:'Noto Sans Devanagari',sans-serif">तारीख</span>
+                                <span class="detail-val only-en">Monday, 16 Nov 2026</span>
+                                <span class="detail-val only-ur"
+                                    style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">پیر، ۱۶ نومبر
+                                    ۲۰۲۶</span>
+                                <span class="detail-val only-hi"
+                                    style="font-family:'Noto Sans Devanagari',sans-serif">सोमवार, १६ नव॰ २०२६</span>
+                            </div>
+                            <div class="detail-div"></div>
+                            <div class="detail-col">
+                                <span class="detail-lbl only-en">Time</span>
+                                <span class="detail-lbl only-ur"
+                                    style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">وقت</span>
+                                <span class="detail-lbl only-hi"
+                                    style="font-family:'Noto Sans Devanagari',sans-serif">समय</span>
+                                <span class="detail-val only-en">After Isha Namaz</span>
+                                <span class="detail-val only-ur"
+                                    style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">نمازِ عشاء کے
+                                    بعد</span>
+                                <span class="detail-val only-hi"
+                                    style="font-family:'Noto Sans Devanagari',sans-serif">ईशा नमाज़ के बाद</span>
+                                <span class="detail-sub">8:30 PM onwards</span>
+                            </div>
+                        </div>
+
+                        <div class="addr-block">
+                            <strong class="only-en">Groom's Residence</strong>
+                            <strong class="only-ur" style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">دولہے
+                                کا گھر</strong>
+                            <strong class="only-hi" style="font-family:'Noto Sans Devanagari',sans-serif">दूल्हे का
+                                आवास</strong>
+                            <span class="only-en">Adampur, Tindauli, Ambedkar Nagar<br />Uttar Pradesh – 224168</span>
+                            <span class="only-ur"
+                                style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">آدم پور،
+                                ٹنڈولی، امبیڈکر نگر<br />اتر پردیش – ۲۲۴۱۶۸</span>
+                            <span class="only-hi"
+                                style="font-family:'Noto Sans Devanagari',sans-serif">आदमपुर, टिंडौली,
+                                अंबेडकरनगर<br />उत्तर प्रदेश – २२४१६८</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 3: BARAT & NIKAH -->
+            <div class="page" id="page-3">
+                <div class="page-ribbon only-en">✦ Page 3 — Barat &amp; Nikah · 17 November 2026 ✦</div>
+                <div class="page-ribbon only-ur"
+                    style="font-family:'Noto Nastaliq Urdu',serif;font-size:.8rem;direction:rtl">✦ صفحہ ۳ — بارات و نکاح
+                    · ۱۷ نومبر ۲۰۲۶ ✦</div>
+                <div class="page-ribbon only-hi" style="font-family:'Noto Sans Devanagari',sans-serif;font-size:.8rem">✦
+                    पृष्ठ ३ — बारात एवं निकाह · १७ नवम्बर २०२६ ✦</div>
+                <div class="card">
+                    <div class="border-outer"></div>
+                    <div class="border-inner"></div>
+                    <svg class="corner tl" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                    </svg>
+                    <svg class="corner tr" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                    </svg>
+                    <svg class="corner bl" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                    </svg>
+                    <svg class="corner br" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                    </svg>
+
+                    <!-- Mosque bg -->
+                    <svg style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:280px;opacity:.04;pointer-events:none"
+                        viewBox="0 0 280 200" fill="none">
+                        <rect x="80" y="140" width="120" height="60" fill="#7a4f0d" />
+                        <path d="M80 140L80 100Q80 55 140 55Q200 55 200 100L200 140Z" fill="#7a4f0d" />
+                        <rect x="118" y="25" width="8" height="45" fill="#7a4f0d" />
+                        <rect x="154" y="25" width="8" height="45" fill="#7a4f0d" />
+                        <ellipse cx="122" cy="25" rx="6" ry="9" fill="#7a4f0d" />
+                        <ellipse cx="158" cy="25" rx="6" ry="9" fill="#7a4f0d" />
+                        <ellipse cx="140" cy="55" rx="5" ry="8" fill="#7a4f0d" />
+                    </svg>
+
+                    <div class="content">
+                        <!-- BARAT section -->
+                        <div class="ev-tag only-en">Procession of the Groom</div>
+                        <div class="ev-tag only-ur" style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">بارات
+                        </div>
+                        <div class="ev-tag only-hi" style="font-family:'Noto Sans Devanagari',sans-serif">बारात</div>
+
+                        <div class="only-en">
+                            <div class="ev-lbl">Barat</div>
+                        </div>
+                        <div class="only-ur">
+                            <div class="ev-lbl"
+                                style="font-family:'Noto Nastaliq Urdu',serif;font-size:1.8rem;direction:rtl">بارات
+                            </div>
+                        </div>
+                        <div class="only-hi">
+                            <div class="ev-lbl" style="font-family:'Noto Sans Devanagari',sans-serif">बारात</div>
+                        </div>
+
+                        <svg class="divider-svg" viewBox="0 0 400 20" fill="none">
+                            <line x1="0" y1="10" x2="155" y2="10" stroke="#b5840a" stroke-width=".7" />
+                            <circle cx="200" cy="10" r="5" fill="#b5840a" />
+                            <line x1="245" y1="10" x2="400" y2="10" stroke="#b5840a" stroke-width=".7" />
+                        </svg>
+
+                        <div class="detail-grid">
+                            <div class="detail-col">
+                                <span class="detail-lbl only-en">Date</span>
+                                <span class="detail-lbl only-ur"
+                                    style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">تاریخ</span>
+                                <span class="detail-lbl only-hi"
+                                    style="font-family:'Noto Sans Devanagari',sans-serif">तारीख</span>
+                                <span class="detail-val only-en">Tuesday, 17 Nov 2026</span>
+                                <span class="detail-val only-ur"
+                                    style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">منگل، ۱۷ نومبر
+                                    ۲۰۲۶</span>
+                                <span class="detail-val only-hi"
+                                    style="font-family:'Noto Sans Devanagari',sans-serif">मंगलवार, १७ नव॰ २०२६</span>
+                            </div>
+                            <div class="detail-div"></div>
+                            <div class="detail-col">
+                                <span class="detail-lbl only-en">Departure</span>
+                                <span class="detail-lbl only-ur"
+                                    style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">روانگی</span>
+                                <span class="detail-lbl only-hi"
+                                    style="font-family:'Noto Sans Devanagari',sans-serif">प्रस्थान</span>
+                                <span class="detail-val only-en">After Zuhr Namaz</span>
+                                <span class="detail-val only-ur"
+                                    style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">نمازِ ظہر کے بعد</span>
+                                <span class="detail-val only-hi"
+                                    style="font-family:'Noto Sans Devanagari',sans-serif">जुहर नमाज़ के बाद</span>
+                                <span class="detail-sub">~1:30 PM</span>
+                            </div>
+                        </div>
+
+                        <!-- Separator -->
+                        <svg class="divider-svg" viewBox="0 0 400 24" fill="none" style="margin:1.2rem auto">
+                            <line x1="0" y1="12" x2="140" y2="12" stroke="#c9a84c" stroke-width=".5" />
+                            <polygon points="165,4 180,20 195,4 180,12" fill="#b5840a" opacity=".6" />
+                            <line x1="220" y1="12" x2="400" y2="12" stroke="#c9a84c" stroke-width=".5" />
+                        </svg>
+
+                        <!-- NIKAH section -->
+                        <div class="ev-tag only-en">Ceremony of Nikah</div>
+                        <div class="ev-tag only-ur" style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">تقریبِ
+                            نکاح</div>
+                        <div class="ev-tag only-hi" style="font-family:'Noto Sans Devanagari',sans-serif">निकाह समारोह
+                        </div>
+
+                        <div class="only-en">
+                            <div class="ev-lbl">Nikah</div>
+                            <div class="bism" style="font-size:1.1rem;margin:.3rem 0">اَلنِّكَاحُ مِن سُنَّتِي</div>
+                        </div>
+                        <div class="only-ur">
+                            <div class="ev-lbl"
+                                style="font-family:'Noto Nastaliq Urdu',serif;font-size:1.8rem;direction:rtl">نکاح</div>
+                            <div class="bism" style="font-size:1.1rem;margin:.3rem 0;direction:rtl">اَلنِّكَاحُ مِن
+                                سُنَّتِي</div>
+                        </div>
+                        <div class="only-hi">
+                            <div class="ev-lbl" style="font-family:'Noto Sans Devanagari',sans-serif">निकाह</div>
+                        </div>
+
+                        <div class="detail-grid" style="margin:.8rem 0">
+                            <div class="detail-col">
+                                <span class="detail-lbl only-en">Date &amp; Time</span>
+                                <span class="detail-lbl only-ur"
+                                    style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">تاریخ و وقت</span>
+                                <span class="detail-lbl only-hi"
+                                    style="font-family:'Noto Sans Devanagari',sans-serif">तारीख व समय</span>
+                                <span class="detail-val only-en">17 Nov 2026</span>
+                                <span class="detail-val only-ur"
+                                    style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">۱۷ نومبر ۲۰۲۶</span>
+                                <span class="detail-val only-hi"
+                                    style="font-family:'Noto Sans Devanagari',sans-serif">१७ नव॰ २०२६</span>
+                                <span class="detail-sub">After Asr Namaz / ~4:30 PM</span>
+                            </div>
+                            <div class="detail-div"></div>
+                            <div class="detail-col">
+                                <span class="detail-lbl only-en">Venue</span>
+                                <span class="detail-lbl only-ur"
+                                    style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">مقام</span>
+                                <span class="detail-lbl only-hi"
+                                    style="font-family:'Noto Sans Devanagari',sans-serif">स्थान</span>
+                                <span class="detail-val only-en" style="font-size:.88rem">Adampur, Tindauli</span>
+                                <span class="detail-val only-ur"
+                                    style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl;font-size:.88rem">آدم
+                                    پور، ٹنڈولی</span>
+                                <span class="detail-val only-hi"
+                                    style="font-family:'Noto Sans Devanagari',sans-serif;font-size:.88rem">आदमपुर,
+                                    टिंडौली</span>
+                                <span class="detail-sub">Ambedkar Nagar, UP</span>
+                            </div>
+                        </div>
+
+                        <div class="addr-block">
+                            <strong class="only-en">Full Address</strong>
+                            <strong class="only-ur" style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">مکمل
+                                پتہ</strong>
+                            <strong class="only-hi" style="font-family:'Noto Sans Devanagari',sans-serif">पूरा
+                                पता</strong>
+                            <span class="only-en">Adampur, Tindauli<br />Ambedkar Nagar, Uttar Pradesh – 224168</span>
+                            <span class="only-ur"
+                                style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">آدم پور،
+                                ٹنڈولی<br />امبیڈکر نگر، اتر پردیش – ۲۲۴۱۶۸</span>
+                            <span class="only-hi"
+                                style="font-family:'Noto Sans Devanagari',sans-serif">आदमपुर,
+                                टिंडौली<br />अंबेडकरनगर, उत्तर प्रदेश – २२४१६८</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 4: FAMILY & CLOSING -->
+            <div class="page" id="page-4">
+                <div class="page-ribbon only-en">✦ Page 4 — With Blessings ✦</div>
+                <div class="page-ribbon only-ur"
+                    style="font-family:'Noto Nastaliq Urdu',serif;font-size:.8rem;direction:rtl">✦ صفحہ ۴ — دعاؤں کے
+                    ساتھ ✦</div>
+                <div class="page-ribbon only-hi" style="font-family:'Noto Sans Devanagari',sans-serif;font-size:.8rem">✦
+                    पृष्ठ ४ — आशीर्वाद के साथ ✦</div>
+                <div class="card">
+                    <div class="border-outer"></div>
+                    <div class="border-inner"></div>
+                    <svg class="corner tl" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                    </svg>
+                    <svg class="corner tr" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                    </svg>
+                    <svg class="corner bl" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                    </svg>
+                    <svg class="corner br" viewBox="0 0 64 64" fill="none">
+                        <path d="M4 4L4 28Q4 4 28 4Z" stroke="#b5840a" stroke-width="1" />
+                        <path d="M4 4L22 4Q4 4 4 22Z" stroke="#b5840a" stroke-width=".8" fill="#b5840a22" />
+                        <circle cx="4" cy="4" r="3" fill="#b5840a" />
+                        <path d="M14 4Q14 14 4 14" stroke="#b5840a" stroke-width=".8" />
+                    </svg>
+
+                    <div class="content">
+                        <!-- Family grid -->
+                        <div class="only-en">
+                            <p class="family-nm" style="margin-bottom:.3rem">With the Blessings of our Families</p>
+                        </div>
+                        <div class="only-ur">
+                            <p class="family-nm"
+                                style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl;margin-bottom:.3rem">خاندان
+                                کی دعاؤں کے ساتھ</p>
+                        </div>
+                        <div class="only-hi">
+                            <p class="family-nm"
+                                style="font-family:'Noto Sans Devanagari',sans-serif;margin-bottom:.3rem">परिवार के
+                                आशीर्वाद के साथ</p>
+                        </div>
+
+                        <svg class="divider-svg" viewBox="0 0 400 20" fill="none">
+                            <line x1="0" y1="10" x2="155" y2="10" stroke="#b5840a" stroke-width=".7" />
+                            <circle cx="200" cy="10" r="5" fill="#b5840a" />
+                            <line x1="245" y1="10" x2="400" y2="10" stroke="#b5840a" stroke-width=".7" />
+                        </svg>
+
+                        <div class="fam-grid">
+                            <div class="fam-col" style="text-align:left">
+                                <div class="fam-title only-en">Groom's Family</div>
+                                <div class="fam-title only-ur"
+                                    style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">خاندانِ دولہا</div>
+                                <div class="fam-title only-hi" style="font-family:'Noto Sans Devanagari',sans-serif">
+                                    दूल्हे का परिवार</div>
+                                <div class="fam-name only-en">
+                                    Shaikh Siddique <span class="fam-role">(Grandfather)</span><br />
+                                    Hadisul <span class="fam-role">(Grandmother)</span><br />
+                                    Shaikh Javed <span class="fam-role">(Father)</span><br />
+                                    Ruksana Begum <span class="fam-role">(Mother)</span><br />
+                                    Shaikh Aftab <span class="fam-role">(Brother)</span><br />
+                                    Shaikh Manjur <span class="fam-role">(Uncle)</span><br />
+                                    Shaikh Mansur <span class="fam-role">(Uncle)</span><br />
+                                    Shaikh Akhtar <span class="fam-role">(Uncle)</span>
+                                </div>
+                                <div class="fam-name only-ur"
+                                    style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl;font-size:.82rem;line-height:1.9">
+                                    شیخ صدیق <span class="fam-role">(دادا)</span><br />
+                                    حدیثُل <span class="fam-role">(دادی)</span><br />
+                                    شیخ جاوید <span class="fam-role">(والد)</span><br />
+                                    رکسانہ بیگم <span class="fam-role">(والدہ)</span><br />
+                                    شیخ آفتاب <span class="fam-role">(بھائی)</span><br />
+                                    شیخ منظور <span class="fam-role">(چچا)</span><br />
+                                    شیخ منصور <span class="fam-role">(چچا)</span><br />
+                                    شیخ اختر <span class="fam-role">(چچا)</span>
+                                </div>
+                                <div class="fam-name only-hi"
+                                    style="font-family:'Noto Sans Devanagari',sans-serif;font-size:.78rem;line-height:1.9">
+                                    शेख सिद्दीक <span class="fam-role">(दादा)</span><br />
+                                    हदीसुल <span class="fam-role">(दादी)</span><br />
+                                    शेख जावेद <span class="fam-role">(पिता)</span><br />
+                                    रुकसाना बेगम <span class="fam-role">(माता)</span><br />
+                                    शेख आफताब <span class="fam-role">(भाई)</span><br />
+                                    शेख मंज़ूर <span class="fam-role">(चाचा)</span><br />
+                                    शेख मंसूर <span class="fam-role">(चाचा)</span><br />
+                                    शेख अख्तर <span class="fam-role">(चाचा)</span>
+                                </div>
+                            </div>
+                            <div class="fam-div"></div>
+                            <div class="fam-col" style="text-align:right">
+                                <div class="fam-title only-en" style="text-align:right">Bride's Family</div>
+                                <div class="fam-title only-ur"
+                                    style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl;text-align:right">
+                                    خاندانِ دلہن</div>
+                                <div class="fam-title only-hi"
+                                    style="font-family:'Noto Sans Devanagari',sans-serif;text-align:right">दुल्हन का
+                                    परिवार</div>
+                                <div class="fam-name only-en" style="text-align:right">
+                                    Ashik Ali <span class="fam-role">(Father)</span><br />
+                                    Kitabun Nisha <span class="fam-role">(Mother)</span><br />
+                                    Ibrahim Shaikh <span class="fam-role">(Brother)</span>
+                                </div>
+                                <div class="fam-name only-ur"
+                                    style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl;text-align:right;font-size:.82rem;line-height:1.9">
+                                    عاشق علی <span class="fam-role">(والد)</span><br />
+                                    کتابُن نشاء <span class="fam-role">(والدہ)</span><br />
+                                    ابراہیم شیخ <span class="fam-role">(بھائی)</span>
+                                </div>
+                                <div class="fam-name only-hi"
+                                    style="font-family:'Noto Sans Devanagari',sans-serif;font-size:.78rem;line-height:1.9;text-align:right">
+                                    आशिक अली <span class="fam-role">(पिता)</span><br />
+                                    किताबुन निशा <span class="fam-role">(माता)</span><br />
+                                    इब्राहीम शेख <span class="fam-role">(भाई)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <svg class="divider-svg" viewBox="0 0 400 24" fill="none">
+                            <line x1="0" y1="12" x2="80" y2="12" stroke="#b5840a" stroke-width=".7" />
+                            <path d="M90 12Q100 2 110 12Q120 22 130 12" stroke="#b5840a" stroke-width=".9" />
+                            <circle cx="140" cy="12" r="3" fill="#b5840a" />
+                            <path d="M150 12Q160 2 170 12Q180 22 190 12Q200 2 210 12Q220 22 230 12Q240 2 250 12"
+                                stroke="#b5840a" stroke-width=".9" />
+                            <circle cx="260" cy="12" r="3" fill="#b5840a" />
+                            <path d="M270 12Q280 2 290 12Q300 22 310 12" stroke="#b5840a" stroke-width=".9" />
+                            <line x1="320" y1="12" x2="400" y2="12" stroke="#b5840a" stroke-width=".7" />
+                        </svg>
+
+                        <p class="rsvp-note only-en">
+                            Your presence will be our greatest honour &amp; blessing<br />
+                            <em>Mehrbani farma kar zaroor tashreef layen</em>
+                        </p>
+                        <p class="rsvp-note only-ur"
+                            style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl;font-size:.9rem">
+                            آپ کی تشریف آوری ہمارا شرف ہوگا<br />
+                            <em>مہربانی فرما کر ضرور تشریف لائیں</em>
+                        </p>
+                        <p class="rsvp-note only-hi" style="font-family:'Noto Sans Devanagari',sans-serif">
+                            आपकी उपस्थिति हमारा सौभाग्य होगी<br />
+                            <em>कृपया अवश्य पधारें</em>
+                        </p>
+
+                        <div class="bism" style="margin-top:1rem">جَزاکَ اللّٰهُ خَيراً</div>
+                        <p class="footer-hindi only-hi"
+                            style="font-family:'Noto Sans Devanagari',sans-serif;margin-top:.3rem">मुबारक हो ✦ बधाई हो
+                        </p>
+                        <p
+                            style="font-size:.68rem;color:var(--gold-lt);letter-spacing:.2em;text-transform:uppercase;margin-top:.8rem">
+                            ✦ Nikah Mubarak ✦</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nav dots -->
+            <div id="nav-dots">
+                <div class="dot active" onclick="scrollToPage(1)" title="Page 1"></div>
+                <div class="dot" onclick="scrollToPage(2)" title="Page 2"></div>
+                <div class="dot" onclick="scrollToPage(3)" title="Page 3"></div>
+                <div class="dot" onclick="scrollToPage(4)" title="Page 4"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ── Stars ──
+        const starsEl = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const s = document.createElement('div'); s.className = 'star';
+            const sz = Math.random() * 2 + .8;
+            s.style.cssText = `left:${Math.random() * 100}%;top:${Math.random() * 100}%;width:${sz}px;height:${sz}px;--d:${2 + Math.random() * 4}s;--delay:${Math.random() * 6}s;--op:${.15 + Math.random() * .5}`;
+            starsEl.appendChild(s);
+        }
+
+        // ── Countdown ──
+        function updateCountdown() {
+            const target = new Date('2026-11-17T13:30:00');
+            const now = new Date();
+            const diff = target - now;
+            if (diff <= 0) {
+                ['cd-days', 'cd-hrs', 'cd-min', 'cd-sec'].forEach(id => document.getElementById(id).textContent = '0');
+                return;
+            }
+            document.getElementById('cd-days').textContent = Math.floor(diff / 86400000);
+            document.getElementById('cd-hrs').textContent = Math.floor((diff % 86400000) / 3600000);
+            document.getElementById('cd-min').textContent = Math.floor((diff % 3600000) / 60000);
+            document.getElementById('cd-sec').textContent = Math.floor((diff % 60000) / 1000);
+        }
+        updateCountdown(); setInterval(updateCountdown, 1000);
+
+        // ── Language ──
+        function setLang(lang) {
+            document.body.setAttribute('data-lang', lang);
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.lang-btn').forEach(b => { if (b.textContent.trim() === { en: 'English', ur: 'اردو', hi: 'हिंदी' }[lang]) b.classList.add('active') });
+            // re-animate cards
+            document.querySelectorAll('.card .content').forEach(c => {
+                c.style.animation = 'none';
+                requestAnimationFrame(() => { c.style.animation = ''; });
+            });
+        }
+
+        // ── Envelope open ──
+        let opened = false;
+        function openEnvelope() {
+            if (opened) return; opened = true;
+            document.getElementById('click-hint').style.opacity = '0';
+            document.getElementById('env-flap').style.transform = 'rotateX(-180deg)';
+            setTimeout(() => document.getElementById('seal').classList.add('gone'), 300);
+            setTimeout(() => document.getElementById('letter-peek').classList.add('up'), 700);
+            setTimeout(() => {
+                const ew = document.getElementById('env-wrap');
+                ew.style.transition = 'opacity .7s ease,transform .7s ease';
+                ew.style.opacity = '0'; ew.style.transform = 'scale(.8) translateY(30px)';
+            }, 1500);
+            setTimeout(() => {
+                document.getElementById('env-wrap').style.display = 'none';
+                const iw = document.getElementById('inv-wrap'); iw.style.display = 'block';
+                document.getElementById('nav-dots').style.display = 'flex';
+                document.getElementById('progress').style.display = 'block';
+                document.getElementById('lang-bar').classList.add('visible');
+                document.querySelectorAll('.page').forEach((p, i) => setTimeout(() => p.classList.add('visible'), i * 400));
+                setupScroll(); spawnPetals(); spawnParticles();
+            }, 2200);
+        }
+
+        // ── Scroll ──
+        function setupScroll() {
+            window.addEventListener('scroll', () => {
+                const docH = document.body.scrollHeight - window.innerHeight;
+                document.getElementById('progress').style.width = (window.scrollY / docH * 100) + '%';
+                const pages = ['page-1', 'page-2', 'page-3', 'page-4'].map(id => document.getElementById(id));
+                const dots = document.querySelectorAll('.dot');
+                pages.forEach((p, i) => {
+                    if (!p) return;
+                    const r = p.getBoundingClientRect();
+                    if (r.top <= window.innerHeight * .55 && r.bottom >= window.innerHeight * .45) {
+                        dots.forEach(d => d.classList.remove('active')); dots[i].classList.add('active');
+                    }
+                });
+            });
+        }
+        function scrollToPage(n) { const p = document.getElementById('page-' + n); if (p) p.scrollIntoView({ behavior: 'smooth', block: 'start' }) }
+
+        // ── Petals ──
+        function spawnPetals() {
+            const em = ['🌹', '✿', '❀', '🌸', '🌼', '⭐']; let c = 0;
+            const iv = setInterval(() => {
+                if (c++ > 40) { clearInterval(iv); return; }
+                const el = document.createElement('div'); el.className = 'particle';
+                el.textContent = em[Math.floor(Math.random() * em.length)];
+                el.style.cssText = `left:${Math.random() * 100}vw;bottom:-30px;font-size:${.7 + Math.random() * .9}rem;animation-duration:${4 + Math.random() * 5}s;animation-delay:${Math.random() * 3}s`;
+                document.body.appendChild(el);
+                setTimeout(() => el.remove(), 10000);
+            }, 200);
+        }
+
+        // ── Gold dust particles ──
+        function spawnParticles() {
+            for (let i = 0; i < 25; i++) {
+                setTimeout(() => {
+                    const el = document.createElement('div');
+                    el.style.cssText = `position:fixed;width:4px;height:4px;border-radius:50%;background:#c9a84c;left:${Math.random() * 100}vw;bottom:-10px;opacity:.7;animation:floatUp ${3 + Math.random() * 4}s linear forwards;pointer-events:none;z-index:1`;
+                    document.body.appendChild(el);
+                    setTimeout(() => el.remove(), 8000);
+                }, i * 300);
+            }
+        }
+    </script>
+</body>
+
+</html>
