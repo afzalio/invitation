@@ -32,9 +32,9 @@
         "parentLabelHi": "पुत्री: आशिक अली एवं किताबुन निशा"
     },
     "families": {
-        "familyNameEn": "Shaikh Family & Ashik Ali Family",
-        "familyNameUr": "خاندانِ شیخ & خاندانِ عاشق علی",
-        "familyNameHi": "शेख परिवार & आशिक अली परिवार",
+        "familyNameEn": "Shaikh Family",
+        "familyNameUr": "خاندانِ شیخ",
+        "familyNameHi": "शेख परिवार",
         "presentEn": "joyfully request the honour of your presence",
         "presentUr": "دل و جاں سے آپ کو دعوت دیتے ہیں",
         "presentHi": "हार्दिक निमंत्रण देते हैं",
@@ -43,7 +43,7 @@
         "ribbonHi": "विवाह निमंत्रण पत्र"
     },
     "countdown": {
-        "targetDate": "2026-11-17T13:30:00",
+        "targetDate": "2026-11-17T00:00:00",
         "labelEn": "Days until the Wedding",
         "labelUr": "شادی تک باقی دن",
         "labelHi": "विवाह तक शेष दिन"
@@ -97,7 +97,7 @@
             "departureEn": "After Zuhr Namaz",
             "departureUr": "نمازِ ظہر کے بعد",
             "departureHi": "जुहर नमाज़ के बाद",
-            "departureSub": "~1:30 PM"
+            "departureSub": "~12:00 PM"
         },
         "nikah": {
             "tagEn": "Ceremony of Nikah",
