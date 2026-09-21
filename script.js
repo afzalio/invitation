@@ -328,17 +328,53 @@ function openEnvelope() {
     }, 2200);
 }
 
-function scrollToPage(n) { showPage(n) }
-
-function sendMessage(event) {
-    event.preventDefault();
-    const name = document.getElementById('guest-name').value.trim();
-    const message = document.getElementById('guest-message').value.trim();
+function sendBlessing(target, event) {
+    if (event) event.preventDefault();
+    const form = document.getElementById('blessing-form');
+    if (form && !form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
+    const nameEl = document.getElementById('guest-name');
+    const messageEl = document.getElementById('guest-message');
+    const name = nameEl ? nameEl.value.trim() : '';
+    const message = messageEl ? messageEl.value.trim() : '';
     const status = document.getElementById('message-status');
-    if (!name || !message) return;
-    const text = `Wedding blessing from ${name}:%0A${encodeURIComponent(message)}`;
-    window.open(`https://wa.me/?text=${text}`, '_blank');
-    status.textContent = 'Your message is ready to send in WhatsApp.';
+
+    if (!name || !message) {
+        if (form) form.reportValidity();
+        return;
+    }
+
+    const groomNumber = (DATA.groom && DATA.groom.whatsapp) ? DATA.groom.whatsapp : '918420078430';
+    const brideNumber = (DATA.bride && DATA.bride.whatsapp) ? DATA.bride.whatsapp : '917003636093';
+    const phone = target === 'bride' ? brideNumber : groomNumber;
+    const recipient = target === 'bride' 
+        ? ((DATA.bride && DATA.bride.nameEn) ? DATA.bride.nameEn : 'Zareena Shaikh') 
+        : ((DATA.groom && DATA.groom.nameEn) ? DATA.groom.nameEn : 'Shaikh Afzal');
+
+    const currentLang = document.body.getAttribute('data-lang') || 'en';
+    let text = '';
+    if (currentLang === 'ur') {
+        text = `*شادی کی دعائیں و مبارکباد*\n*برائے:* ${target === 'bride' ? 'زرینہ شیخ' : 'شیخ افضل'}\n*از طرف:* ${name}\n*پیغام:* ${message}`;
+    } else if (currentLang === 'hi') {
+        text = `*विवाह की शुभकामनाएं*\n*सादर:* ${target === 'bride' ? 'ज़रीना शेख' : 'शेख अफज़ल'}\n*प्रेषक:* ${name}\n*संदेश:* ${message}`;
+    } else {
+        text = `*Wedding Blessings for ${recipient}*\n*From:* ${name}\n*Message:* ${message}`;
+    }
+
+    const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+    window.open(waUrl, '_blank');
+
+    if (status) {
+        if (currentLang === 'ur') {
+            status.textContent = `پیغام ${target === 'bride' ? 'دلہن' : 'دولہے'} کے واٹس ایپ پر بھیجنے کے لیے تیار ہے۔`;
+        } else if (currentLang === 'hi') {
+            status.textContent = `आपका संदेश ${target === 'bride' ? 'दुल्हन' : 'दूल्हे'} के व्हाट्सएप पर भेजने के लिए तैयार है।`;
+        } else {
+            status.textContent = `Opening WhatsApp to send your blessings to ${recipient}...`;
+        }
+    }
 }
 
 // ── Petals ──

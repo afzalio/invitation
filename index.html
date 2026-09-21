@@ -788,16 +788,35 @@
                             <line x1="250" y1="10" x2="400" y2="10" stroke="#b5840a" stroke-width=".7" />
                         </svg>
 
-                        <form class="message-form" onsubmit="sendMessage(event)">
+                        <form class="message-form" id="blessing-form" onsubmit="event.preventDefault(); sendBlessing('groom');">
                             <div>
-                                <label for="guest-name">Name</label>
+                                <label for="guest-name">
+                                    <span class="only-en">Your Name</span>
+                                    <span class="only-ur" style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">آپ کا نام</span>
+                                    <span class="only-hi" style="font-family:'Noto Sans Devanagari',sans-serif">आपका नाम</span>
+                                </label>
                                 <input id="guest-name" name="name" type="text" required />
                             </div>
                             <div>
-                                <label for="guest-message">Message</label>
+                                <label for="guest-message">
+                                    <span class="only-en">Your Message / Blessings</span>
+                                    <span class="only-ur" style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">آپ کا پیغام / دعائیں</span>
+                                    <span class="only-hi" style="font-family:'Noto Sans Devanagari',sans-serif">शुभकामनाएं एवं संदेश</span>
+                                </label>
                                 <textarea id="guest-message" name="message" required></textarea>
                             </div>
-                            <button class="send-btn" type="submit">Send Message</button>
+                            <div class="send-btn-group">
+                                <button class="send-btn btn-groom" type="button" onclick="sendBlessing('groom')">
+                                    <span class="only-en">✦ Wish Groom ✦</span>
+                                    <span class="only-ur" style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">✦ دولہے کو بھیجیں ✦</span>
+                                    <span class="only-hi" style="font-family:'Noto Sans Devanagari',sans-serif">✦ दूल्हे को भेजें ✦</span>
+                                </button>
+                                <button class="send-btn btn-bride" type="button" onclick="sendBlessing('bride')">
+                                    <span class="only-en">✦ Wish Bride ✦</span>
+                                    <span class="only-ur" style="font-family:'Noto Nastaliq Urdu',serif;direction:rtl">✦ دلہن کو بھیجیں ✦</span>
+                                    <span class="only-hi" style="font-family:'Noto Sans Devanagari',sans-serif">✦ दुल्हन को भेजें ✦</span>
+                                </button>
+                            </div>
                         </form>
                         <p class="form-note" id="message-status"></p>
                     </div>

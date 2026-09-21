@@ -343,12 +343,6 @@ body {
     }
 }
 
-/* ── ENV CONTENT DECORATION ── */
-.env-inner-deco {
-    position: absolute;
-    inset: 0;
-    pointer-events: none
-}
 
 /* ── INVITATION PAGES ── */
 #inv-wrap {
@@ -536,22 +530,6 @@ body {
     letter-spacing: .03em
 }
 
-.nm-urdu {
-    font-family: 'Noto Nastaliq Urdu', serif;
-    font-size: clamp(1rem, 3vw, 1.4rem);
-    color: var(--gold-dk);
-    display: block;
-    margin: .1rem 0 .3rem
-}
-
-.nm-hindi {
-    font-family: 'Noto Sans Devanagari', sans-serif;
-    font-size: clamp(1rem, 3vw, 1.3rem);
-    color: var(--gold-dk);
-    display: block;
-    margin: .1rem 0 .3rem
-}
-
 .amp {
     font-family: 'Playfair Display', serif;
     font-size: clamp(2rem, 6vw, 3rem);
@@ -586,22 +564,6 @@ body {
     color: #4a2c06;
     letter-spacing: .08em;
     margin-bottom: .15rem
-}
-
-.ev-urdu {
-    font-family: 'Noto Nastaliq Urdu', serif;
-    font-size: 1.2rem;
-    color: var(--gold-dk);
-    display: block;
-    margin-bottom: .6rem
-}
-
-.ev-hindi {
-    font-family: 'Noto Sans Devanagari', sans-serif;
-    font-size: 1.1rem;
-    color: var(--gold-dk);
-    display: block;
-    margin-bottom: .6rem
 }
 
 .detail-grid {
@@ -669,13 +631,6 @@ body {
     margin-top: .8rem;
     letter-spacing: .03em;
     line-height: 1.8
-}
-
-.footer-urdu {
-    font-family: 'Noto Nastaliq Urdu', serif;
-    font-size: 1rem;
-    color: #8b6020;
-    margin-top: .3rem
 }
 
 .footer-hindi {
@@ -752,17 +707,48 @@ body {
     box-shadow: 0 0 0 2px rgba(181, 132, 10, .12)
 }
 
+.send-btn-group {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: .4rem;
+}
+
 .send-btn {
-    justify-self: center;
+    flex: 1 1 140px;
     border: 1px solid var(--gold);
     background: var(--gold);
     color: var(--cream);
     font-family: 'EB Garamond', serif;
     font-size: .86rem;
-    letter-spacing: .14em;
+    letter-spacing: .12em;
     text-transform: uppercase;
-    padding: .65rem 1.6rem;
-    cursor: pointer
+    padding: .7rem 1.2rem;
+    cursor: pointer;
+    transition: all .25s ease;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.send-btn:hover {
+    background: var(--gold-dk);
+    border-color: var(--gold-dk);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(181, 132, 10, .25);
+}
+
+.send-btn.btn-bride {
+    background: #6e1500;
+    border-color: #b5840a;
+}
+
+.send-btn.btn-bride:hover {
+    background: #500f00;
+    border-color: var(--gold-lt);
+    box-shadow: 0 4px 12px rgba(110, 21, 0, .3);
 }
 
 .form-note {
@@ -788,17 +774,6 @@ body {
     width: 260px;
     opacity: .04;
     pointer-events: none
-}
-
-.pg-label {
-    text-align: center;
-    color: var(--gold-lt);
-    font-family: 'EB Garamond', serif;
-    font-size: .72rem;
-    letter-spacing: .22em;
-    text-transform: uppercase;
-    margin-bottom: .5rem;
-    opacity: .7
 }
 
 /* family grid */
@@ -974,22 +949,6 @@ body[data-lang="ur"] .only-ur {
 
 body[data-lang="hi"] .only-hi {
     display: block !important
-}
-
-.urdu-inline {
-    display: none
-}
-
-body[data-lang="ur"] .urdu-inline {
-    display: block
-}
-
-.hindi-inline {
-    display: none
-}
-
-body[data-lang="hi"] .hindi-inline {
-    display: block
 }
 
 /* animate-in for lang switch */

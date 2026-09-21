@@ -15,21 +15,19 @@
         "nameEn": "Shaikh Afzal",
         "nameUr": "شیخ افضل",
         "nameHi": "शेख अफज़ल",
-        "fatherEn": "Shaikh Javed",
-        "motherEn": "Ruksana Begum",
         "parentLabelEn": "Son of Shaikh Javed & Ruksana Begum",
         "parentLabelUr": "فرزندِ شیخ جاوید و رکسانہ بیگم",
-        "parentLabelHi": "पुत्र: शेख जावेद एवं रुकसाना बेगम"
+        "parentLabelHi": "पुत्र: शेख जावेद एवं रुकसाना बेगम",
+        "whatsapp": "918420078430"
     },
     "bride": {
         "nameEn": "Zareena Shaikh",
         "nameUr": "زرینہ شیخ",
         "nameHi": "ज़रीना शेख",
-        "fatherEn": "Ashik Ali",
-        "motherEn": "Kitabun Nisha",
         "parentLabelEn": "Daughter of Ashik Ali & Kitabun Nisha",
         "parentLabelUr": "دختر عاشق علی و کتابُن نشاء",
-        "parentLabelHi": "पुत्री: आशिक अली एवं किताबुन निशा"
+        "parentLabelHi": "पुत्री: आशिक अली एवं किताबुन निशा",
+        "whatsapp": "917003636093"
     },
     "families": {
         "familyNameEn": "Shaikh Family",
@@ -62,9 +60,6 @@
             "dateEn": "Monday, 16 Nov 2026",
             "dateUr": "پیر، ۱۶ نومبر ۲۰۲۶",
             "dateHi": "सोमवार, १६ नव॰ २०२६",
-            "timeLabelEn": "Time",
-            "timeLabelUr": "وقت",
-            "timeLabelHi": "समय",
             "timeEn": "After Isha Namaz",
             "timeUr": "نمازِ عشاء کے بعد",
             "timeHi": "ईशा नमाज़ के बाद",
@@ -91,9 +86,6 @@
             "dateEn": "Tuesday, 17 Nov 2026",
             "dateUr": "منگل، ۱۷ نومبر ۲۰۲۶",
             "dateHi": "मंगलवार, १७ नव॰ २०२६",
-            "departureLabelEn": "Departure",
-            "departureLabelUr": "روانگی",
-            "departureLabelHi": "प्रस्थान",
             "departureEn": "After Zuhr Namaz",
             "departureUr": "نمازِ ظہر کے بعد",
             "departureHi": "जुहर नमाज़ के बाद",
@@ -114,9 +106,6 @@
             "dateUr": "۱۷ نومبر ۲۰۲۶",
             "dateHi": "१७ नव॰ २०२६",
             "timeSub": "After Asr Namaz / ~4:30 PM",
-            "venueLabelEn": "Venue",
-            "venueLabelUr": "مقام",
-            "venueLabelHi": "स्थान",
             "venueEn": "Village Adampur Tindauli",
             "venueUr": "گاؤں آدم پور ٹنڈولی",
             "venueHi": "ग्राम आदमपुर टिंडौली",
@@ -208,7 +197,7 @@
         "subEn": "Leave a message for the bride and groom",
         "subUr": "دولہا دلہن کے لئے پیغام لکھیں",
         "subHi": "दूल्हा-दुल्हन के लिए संदेश लिखें",
-        "statusNote": "Your message will open in WhatsApp for sending."
+        "statusNote": "Select Groom or Bride to send your blessings directly on WhatsApp."
     },
     "credits": {
         "designerName": "Afzal",
