@@ -740,17 +740,6 @@ body {
     box-shadow: 0 4px 12px rgba(181, 132, 10, .25);
 }
 
-.send-btn.btn-bride {
-    background: #6e1500;
-    border-color: #b5840a;
-}
-
-.send-btn.btn-bride:hover {
-    background: #500f00;
-    border-color: var(--gold-lt);
-    box-shadow: 0 4px 12px rgba(110, 21, 0, .3);
-}
-
 .form-note {
     color: #9a6e28;
     font-size: .78rem;

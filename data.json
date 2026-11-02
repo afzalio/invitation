@@ -194,10 +194,10 @@
         "headingEn": "Send Your Blessings",
         "headingUr": "اپنی دعائیں بھیجیں",
         "headingHi": "अपना आशीर्वाद भेजें",
-        "subEn": "Leave a message for the bride and groom",
-        "subUr": "دولہا دلہن کے لئے پیغام لکھیں",
-        "subHi": "दूल्हा-दुल्हन के लिए संदेश लिखें",
-        "statusNote": "Select Groom or Bride to send your blessings directly on WhatsApp."
+        "subEn": "Leave a message",
+        "subUr": "پیغام لکھیں",
+        "subHi": "संदेश लिखें",
+        "statusNote": "Your message will open in WhatsApp."
     },
     "credits": {
         "designerName": "Afzal",
