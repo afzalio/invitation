@@ -330,10 +330,18 @@ function changePage(delta) {
     showPage(currentPage + delta);
 }
 
+function playBackgroundMusic() {
+    const audio = document.getElementById('bg-audio');
+    if (!audio) return;
+    audio.volume = 0.35;
+    audio.play().catch(() => {});
+}
+
 // ── Envelope open ──
 let opened = false;
 function openEnvelope() {
     if (opened) return; opened = true;
+    playBackgroundMusic();
     const ew = document.getElementById('env-wrap');
     const flap = document.getElementById('env-flap');
     const seal = document.getElementById('seal');
