@@ -167,6 +167,7 @@
         "groomFamilyTitleUr": "خاندانِ دولہا",
         "groomFamilyTitleHi": "दूल्हे का परिवार",
         "groomFamily": [
+            { "nameEn": "Sk Siddique", "nameUr": "ایس کے صدیق", "nameHi": "एस के सिद्दीकी", "roleEn": "Grand Father", "roleUr": "دادا", "roleHi": "दादा" },
             { "nameEn": "Shaikh Javed", "nameUr": "شیخ جاوید", "nameHi": "शेख जावेद", "roleEn": "Father", "roleUr": "والد", "roleHi": "पिता" },
             { "nameEn": "Shaikh Aftab", "nameUr": "شیخ آفتاب", "nameHi": "शेख आफताब", "roleEn": "Brother", "roleUr": "بھائی", "roleHi": "भाई" },
             { "nameEn": "Intiyaz Kazi", "nameUr": "انتِیاز قاضی", "nameHi": "इंतियाज़ काज़ी", "roleEn": "Brother from another Mother", "roleUr": "ماں کے پیٹ سے نہیں، دل سے بھائی", "roleHi": "माँ के पेट से नहीं, दिल से भाई" }
@@ -181,6 +182,14 @@
         "familyClosingEn": "With love and blessings",
         "familyClosingUr": "محبت اور برکتوں کے ساتھ",
         "familyClosingHi": "प्रेम और आशीर्वाद के साथ",
+        "quoteOneEn": "Indeed, with hardship comes ease.",
+        "quoteOneUr": "بیشک مشکل کے ساتھ آسانی بھی ہے۔",
+        "quoteOneHi": "निश्चित रूप से कठिनाई के साथ आसानी भी है।",
+        "quoteOneRef": "Surah Ash-Sharh 94:5-6",
+        "quoteTwoEn": "Allah is the best of planners.",
+        "quoteTwoUr": "اللہ سب سے بہتر تدبیر کرنے والا ہے۔",
+        "quoteTwoHi": "अल्लाह सबसे अच्छा योजना बनाने वाला है।",
+        "quoteTwoRef": "Surah Al-Imran 3:154",
         "rsvpEn": "Your presence will be our greatest honour & blessing<br /><em>Mehrbani farma kar zaroor tashreef layen</em>",
         "rsvpUr": "آپ کی تشریف آوری ہمارا شرف ہوگا<br /><em>مہربانی فرما کر ضرور تشریف لائیں</em>",
         "rsvpHi": "आपकी उपस्थिति हमारा सौभाग्य होगी<br /><em>कृपया अवश्य पधारें</em>",
@@ -201,9 +210,9 @@
         "statusNote": "Your message will open in WhatsApp."
     },
     "credits": {
-        "designerName": "Afzal",
-        "designerLink": "https://www.instagram.com/itsafzalali?igsh=MXYxYmV0YTFkbzNuZg==",
-        "conceptName": "Zareena",
-        "conceptLink": "https://www.instagram.com/itszareeen?igsh=MWxjaDg4Yjk5Y3B5eg=="
+        "designerName": "Zareena",
+        "designerLink": "https://www.instagram.com/itszareeen?igsh=MWxjaDg4Yjk5Y3B5eg==",
+        "conceptName": "Afzal",
+        "conceptLink": "https://www.instagram.com/itsafzalali?igsh=MXYxYmV0YTFkbzNuZg=="
     }
 }

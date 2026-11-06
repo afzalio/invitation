@@ -214,6 +214,15 @@ function populateFromData(d) {
     document.getElementById('p5-family-closing-ur').textContent = p5.familyClosingUr;
     document.getElementById('p5-family-closing-hi').textContent = p5.familyClosingHi;
 
+    document.getElementById('p5-quote-one-en').textContent = p5.quoteOneEn;
+    document.getElementById('p5-quote-one-ur').textContent = p5.quoteOneUr;
+    document.getElementById('p5-quote-one-hi').textContent = p5.quoteOneHi;
+    document.getElementById('p5-quote-one-ref').textContent = p5.quoteOneRef;
+    document.getElementById('p5-quote-two-en').textContent = p5.quoteTwoEn;
+    document.getElementById('p5-quote-two-ur').textContent = p5.quoteTwoUr;
+    document.getElementById('p5-quote-two-hi').textContent = p5.quoteTwoHi;
+    document.getElementById('p5-quote-two-ref').textContent = p5.quoteTwoRef;
+
     // RSVP
     document.getElementById('p5-rsvp-en').innerHTML = p5.rsvpEn;
     document.getElementById('p5-rsvp-ur').innerHTML = p5.rsvpUr;
