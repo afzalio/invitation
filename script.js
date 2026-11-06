@@ -326,14 +326,22 @@ let opened = false;
 function openEnvelope() {
     if (opened) return; opened = true;
     const ew = document.getElementById('env-wrap');
+    const flap = document.getElementById('env-flap');
+    const seal = document.getElementById('seal');
+    const peek = document.getElementById('letter-peek');
+    const hint = document.getElementById('click-hint');
+
+    ew.style.pointerEvents = 'none';
     ew.classList.add('opening');
-    document.getElementById('click-hint').style.opacity = '0';
-    document.getElementById('env-flap').style.transform = 'rotateX(-180deg)';
-    setTimeout(() => document.getElementById('seal').classList.add('gone'), 300);
-    setTimeout(() => document.getElementById('letter-peek').classList.add('up'), 700);
-    setTimeout(() => ew.classList.add('leaving'), 1550);
+    hint.style.opacity = '0';
+    flap.style.transform = 'rotateX(-180deg)';
+    flap.style.filter = 'drop-shadow(0 10px 18px rgba(181,132,10,.18))';
+
+    setTimeout(() => seal.classList.add('gone'), 260);
+    setTimeout(() => peek.classList.add('up'), 620);
+    setTimeout(() => ew.classList.add('leaving'), 1500);
     setTimeout(() => {
-        document.getElementById('env-wrap').style.display = 'none';
+        ew.style.display = 'none';
         const iw = document.getElementById('inv-wrap'); iw.style.display = 'block';
         document.getElementById('nav-dots').style.display = 'flex';
         document.getElementById('page-controls').style.display = 'flex';
@@ -341,7 +349,7 @@ function openEnvelope() {
         document.getElementById('lang-bar').classList.add('visible');
         showPage(1);
         spawnPetals(); spawnParticles();
-    }, 2200);
+    }, 2100);
 }
 
 function sendMessage(event) {
