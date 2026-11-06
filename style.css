@@ -476,9 +476,50 @@ body {
     background: var(--gold-lt)
 }
 
+.page-ribbon {
+    display: block;
+    width: min(100%, 420px);
+    margin: 0 auto 1.3rem;
+    padding: 7px 18px;
+    border-top: 1px solid var(--gold);
+    border-bottom: 1px solid var(--gold);
+    background: linear-gradient(90deg, rgba(181, 132, 10, 0) 0%, rgba(181, 132, 10, .06) 10%, rgba(181, 132, 10, .06) 90%, rgba(181, 132, 10, 0) 100%);
+    color: var(--gold-dk);
+    font-family: 'EB Garamond', serif;
+    font-size: .72rem;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.2;
+    position: relative;
+}
+
+.page-ribbon::before,
+.page-ribbon::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 54px;
+    height: 1px;
+    background: rgba(181, 132, 10, .7);
+}
+
+.page-ribbon::before {
+    left: -14px;
+}
+
+.page-ribbon::after {
+    right: -14px;
+}
+
 @media(max-width:500px) {
     .content {
         padding: 36px 24px
+    }
+
+    .page-ribbon {
+        letter-spacing: .14em;
+        font-size: .62rem;
     }
 }
 
@@ -571,6 +612,78 @@ body {
     grid-template-columns: 1fr 1.5px 1fr;
     margin: 1rem 0 .5rem;
     align-items: center
+}
+
+#page-2 .detail-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    margin: 1rem auto .5rem;
+    max-width: 420px
+}
+
+#page-2 .detail-col {
+    padding: .5rem .8rem;
+    text-align: center;
+    width: fit-content
+}
+
+#page-2 .detail-div,
+#page-2 .detail-grid .detail-col:last-child,
+#page-2 #p2-time-en,
+#page-2 #p2-time-ur,
+#page-2 #p2-time-hi,
+#page-2 #p2-time-sub {
+    display: none !important
+}
+
+#page-3 .detail-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem auto .5rem;
+    max-width: 420px;
+    width: 100%
+}
+
+#page-3 .detail-col {
+    padding: .5rem .8rem;
+    text-align: center;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center
+}
+
+#page-3 .detail-grid > .detail-div,
+#page-3 .detail-grid > .detail-col:last-child,
+#page-3 #p3-barat-dep-en,
+#page-3 #p3-barat-dep-ur,
+#page-3 #p3-barat-dep-hi,
+#page-3 #p3-barat-dep-sub,
+#page-3 #p3-nikah-venue-en,
+#page-3 #p3-nikah-venue-ur,
+#page-3 #p3-nikah-venue-hi,
+#page-3 #p3-nikah-venue-sub {
+    display: none !important
+}
+
+#page-3 .detail-grid .detail-lbl,
+#page-3 .detail-grid .detail-val,
+#page-3 .detail-grid .detail-sub {
+    text-align: center;
+    display: block
+}
+
+#page-3 .addr-block {
+    margin-top: .9rem;
+    text-align: center
+}
+
+#page-3 .addr-block strong,
+#page-3 .addr-block span {
+    display: block;
+    text-align: center
 }
 
 .detail-col {
@@ -904,6 +1017,25 @@ body {
     opacity: .4;
     cursor: default;
     transform: none
+}
+
+.page-credit-line {
+    margin-top: 1.3rem;
+    text-align: center;
+    font-size: .72rem;
+    letter-spacing: .06em;
+    line-height: 1.9;
+    color: #8b6020
+}
+
+.page-credit-line a {
+    color: var(--gold-dk);
+    text-decoration: none;
+    font-weight: 600
+}
+
+.page-credit-line a:hover {
+    text-decoration: underline
 }
 
 /* lang-specific visibility */

@@ -209,6 +209,11 @@ function populateFromData(d) {
     bfUr.innerHTML = p5.brideFamily.map(m => `${m.nameUr} <span class="fam-role">(${m.roleUr})</span><br />`).join('');
     bfHi.innerHTML = p5.brideFamily.map(m => `${m.nameHi} <span class="fam-role">(${m.roleHi})</span><br />`).join('');
 
+    // Final blessing line before RSVP
+    document.getElementById('p5-family-closing-en').textContent = p5.familyClosingEn;
+    document.getElementById('p5-family-closing-ur').textContent = p5.familyClosingUr;
+    document.getElementById('p5-family-closing-hi').textContent = p5.familyClosingHi;
+
     // RSVP
     document.getElementById('p5-rsvp-en').innerHTML = p5.rsvpEn;
     document.getElementById('p5-rsvp-ur').innerHTML = p5.rsvpUr;
@@ -236,6 +241,17 @@ function populateFromData(d) {
     document.getElementById('credit-designer').href = cr.designerLink;
     document.getElementById('credit-concept').textContent = cr.conceptName;
     document.getElementById('credit-concept').href = cr.conceptLink;
+
+    const pageDesigner = document.getElementById('page-credit-designer');
+    const pageConcept = document.getElementById('page-credit-concept');
+    if (pageDesigner) {
+        pageDesigner.textContent = cr.designerName;
+        pageDesigner.href = cr.designerLink;
+    }
+    if (pageConcept) {
+        pageConcept.textContent = cr.conceptName;
+        pageConcept.href = cr.conceptLink;
+    }
 }
 
 // ── Stars ──

@@ -15,18 +15,18 @@
         "nameEn": "Shaikh Afzal",
         "nameUr": "شیخ افضل",
         "nameHi": "शेख अफज़ल",
-        "parentLabelEn": "Son of Shaikh Javed & Ruksana Begum",
-        "parentLabelUr": "فرزندِ شیخ جاوید و رکسانہ بیگم",
-        "parentLabelHi": "पुत्र: शेख जावेद एवं रुकसाना बेगम",
+        "parentLabelEn": "Son of Shaikh Javed",
+        "parentLabelUr": "فرزندِ شیخ جاوید",
+        "parentLabelHi": "पुत्र: शेख जावेद",
         "whatsapp": "918420078430"
     },
     "bride": {
         "nameEn": "Zareena Shaikh",
         "nameUr": "زرینہ شیخ",
         "nameHi": "ज़रीना शेख",
-        "parentLabelEn": "Daughter of Ashik Ali & Kitabun Nisha",
-        "parentLabelUr": "دختر عاشق علی و کتابُن نشاء",
-        "parentLabelHi": "पुत्री: आशिक अली एवं किताबुन निशा",
+        "parentLabelEn": "Daughter of Ashik Ali",
+        "parentLabelUr": "دختر عاشق علی",
+        "parentLabelHi": "पुत्री: आशिक अली",
         "whatsapp": "917003636093"
     },
     "families": {
@@ -60,10 +60,10 @@
             "dateEn": "Monday, 16 Nov 2026",
             "dateUr": "پیر، ۱۶ نومبر ۲۰۲۶",
             "dateHi": "सोमवार, १६ नव॰ २०२६",
-            "timeEn": "After Isha Namaz",
-            "timeUr": "نمازِ عشاء کے بعد",
-            "timeHi": "ईशा नमाज़ के बाद",
-            "timeSub": "8:30 PM onwards",
+            "timeEn": "",
+            "timeUr": "",
+            "timeHi": "",
+            "timeSub": "",
             "venueLabelEn": "Groom's Residence",
             "venueLabelUr": "دولہے کا گھر",
             "venueLabelHi": "दूल्हे का आवास",
@@ -86,10 +86,10 @@
             "dateEn": "Tuesday, 17 Nov 2026",
             "dateUr": "منگل، ۱۷ نومبر ۲۰۲۶",
             "dateHi": "मंगलवार, १७ नव॰ २०२६",
-            "departureEn": "After Zuhr Namaz",
-            "departureUr": "نمازِ ظہر کے بعد",
-            "departureHi": "जुहर नमाज़ के बाद",
-            "departureSub": "~12:00 PM"
+            "departureEn": "",
+            "departureUr": "",
+            "departureHi": "",
+            "departureSub": ""
         },
         "nikah": {
             "tagEn": "Ceremony of Nikah",
@@ -105,7 +105,7 @@
             "dateEn": "17 Nov 2026",
             "dateUr": "۱۷ نومبر ۲۰۲۶",
             "dateHi": "१७ नव॰ २०२६",
-            "timeSub": "After Asr Namaz / ~4:30 PM",
+            "timeSub": "",
             "venueEn": "Village Adampur Tindauli",
             "venueUr": "گاؤں آدم پور ٹنڈولی",
             "venueHi": "ग्राम आदमपुर टिंडौली",
@@ -168,7 +168,6 @@
         "groomFamilyTitleHi": "दूल्हे का परिवार",
         "groomFamily": [
             { "nameEn": "Shaikh Javed", "nameUr": "شیخ جاوید", "nameHi": "शेख जावेद", "roleEn": "Father", "roleUr": "والد", "roleHi": "पिता" },
-            { "nameEn": "Ruksana Begum", "nameUr": "رکسانہ بیگم", "nameHi": "रुकसाना बेगम", "roleEn": "Mother", "roleUr": "والدہ", "roleHi": "माता" },
             { "nameEn": "Shaikh Aftab", "nameUr": "شیخ آفتاب", "nameHi": "शेख आफताब", "roleEn": "Brother", "roleUr": "بھائی", "roleHi": "भाई" },
             { "nameEn": "Intiyaz Kazi", "nameUr": "انتِیاز قاضی", "nameHi": "इंतियाज़ काज़ी", "roleEn": "Brother from another Mother", "roleUr": "ماں کے پیٹ سے نہیں، دل سے بھائی", "roleHi": "माँ के पेट से नहीं, दिल से भाई" }
         ],
@@ -177,9 +176,11 @@
         "brideFamilyTitleHi": "दुल्हन का परिवार",
         "brideFamily": [
             { "nameEn": "Ashik Ali", "nameUr": "عاشق علی", "nameHi": "आशिक अली", "roleEn": "Father", "roleUr": "والد", "roleHi": "पिता" },
-            { "nameEn": "Kitabun Nisha", "nameUr": "کتابُن نشاء", "nameHi": "किताबुन निशा", "roleEn": "Mother", "roleUr": "والدہ", "roleHi": "माता" },
             { "nameEn": "Ibrahim Shaikh", "nameUr": "ابراہیم شیخ", "nameHi": "इब्राहीम शेख", "roleEn": "Brother", "roleUr": "بھائی", "roleHi": "भाई" }
         ],
+        "familyClosingEn": "With love and blessings",
+        "familyClosingUr": "محبت اور برکتوں کے ساتھ",
+        "familyClosingHi": "प्रेम और आशीर्वाद के साथ",
         "rsvpEn": "Your presence will be our greatest honour & blessing<br /><em>Mehrbani farma kar zaroor tashreef layen</em>",
         "rsvpUr": "آپ کی تشریف آوری ہمارا شرف ہوگا<br /><em>مہربانی فرما کر ضرور تشریف لائیں</em>",
         "rsvpHi": "आपकी उपस्थिति हमारा सौभाग्य होगी<br /><em>कृपया अवश्य पधारें</em>",
